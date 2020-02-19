@@ -1,0 +1,39 @@
+### Requisitos Funcionais:
+
+####### Template #######
+
+Use Case: 
+	Descrição:
+	Cenários:
+	Pré-Condição:
+	Pós-Condição:
+	Fluxo Normal:
+		1. 
+		2.
+	Fluxo Alternativo 1: [....](passo X)
+		X.1.
+		X.2.
+	Fluxo Excepção 1: [....](passo Y)
+		Y.1.
+
+########################
+
+Use Case: Efetuar Login
+	Descrição: Efetua o login de um utilizador do sistema.
+	Cenários: O António pretende efetuar login no sistema.
+	Pré-Condição: Não ter feito login.
+	Pós-Condição: Login efetuado. 
+	Fluxo Normal:
+		1. Utilizador introduz username e password
+		2. Sistema efetua o login
+	Fluxo Excepção 1: [combinação username/password errada](passo 2)
+		2.1. Sistema informa que os dados introduzidos estão incorretos
+
+Use Case: Efetuar Logout
+	Descrição: Efetua o logout de um utilizador.
+	Cenários: O António pretende efetuar logout do sistema.
+	Pré-Condição: Ter login feito.
+	Pós-Condição: Não possuir login feito.
+	Fluxo Normal:
+		1. Utilizador indica que pretende efetuar logout
+		2. Sistema efetua logout
