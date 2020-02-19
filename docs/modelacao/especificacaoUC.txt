@@ -37,3 +37,15 @@ Use Case: Efetuar Logout
 	Fluxo Normal:
 		1. Utilizador indica que pretende efetuar logout
 		2. Sistema efetua logout
+		
+Use case: Inserir Artigos
+	Descrição: Adiciona um ou mais artigos ao sistema
+	Cenários: O António pretende inserir no sistema o novo artigo “Prego no Prato” com o preço de 11 euros
+	Pré-Condição: Sistema não ter um artigo com esse nome
+	Pós-Condição: Sistema ter um novo artigo
+	Fluxo Normal:
+		1.Utilizador introduz nome e preço do artigo
+		2.Sistema verifica que artigo não existe
+		3.Sistema adiciona artigo
+	Fluxo Excepção 1: [Sistema já tem artigo] (passo 2)
+		2.1.Sistema informa que artigo já existe
