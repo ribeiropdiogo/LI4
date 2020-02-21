@@ -1,22 +1,31 @@
-### Requisitos Funcionais:
+### Requisitos Funcionais
+
 
 ####### Template #######
-
-Use Case: 
-	Descrição:
-	Cenários:
-	Pré-Condição:
-	Pós-Condição:
-	Fluxo Normal:
-		1. 
-		2.
-	Fluxo Alternativo 1: [....](passo X)
-		X.1.
-		X.2.
-	Fluxo Excepção 1: [....](passo Y)
-		Y.1.
-
-########################
+<UC>
+DES:
+CEN:
+PreC:
+PosC:
+FN:
+    * Item 1
+    * Item 2
+FA 1:[...](passo X)
+    * Item 1
+    * Item 2
+FE 1:[...](passo Y)
+    * Item 1
+    * Item 2
+</UC>
+##########Legenda##########
+DES = Descrição
+CEN = Cenários
+PreC = Pré-Condicao
+PosC = Pos-condicao
+FN = Fluxo Normal
+FA = Fluxo Alternativo
+FE = Fluxo de Exceção
+###########################
 
 Use Case: Efetuar Login
 	Descrição: Efetua o login de um utilizador do sistema.
