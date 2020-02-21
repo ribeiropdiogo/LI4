@@ -3,21 +3,23 @@
 
 ####### Template #######
 <UC>
+TIT:
 DES:
 CEN:
 PreC:
 PosC:
 FN:
-    * Item 1
-    * Item 2
+    * (Ator1->Ator2) Item 1
+    * (Ator1->Ator2) Item 2
 FA 1:[...](passo X)
-    * Item 1
-    * Item 2
+    * (Ator1->Ator2) Item 1
+    * (Ator1->Ator2) Item 2
 FE 1:[...](passo Y)
-    * Item 1
-    * Item 2
+    * (Ator1->Ator2) Item 1
+    * (Ator1->Ator2) Item 2
 </UC>
 ##########Legenda##########
+TIT = Título
 DES = Descrição
 CEN = Cenários
 PreC = Pré-Condicao
@@ -25,6 +27,7 @@ PosC = Pos-condicao
 FN = Fluxo Normal
 FA = Fluxo Alternativo
 FE = Fluxo de Exceção
+(Ator1->Ator2) = Ator1 envia menagem ao Ator2
 ###########################
 
 Use Case: Efetuar Login
