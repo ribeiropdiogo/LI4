@@ -1,7 +1,7 @@
 ### Requisitos Funcionais
 
 
-####### Template #######
+######## Template #########
 <UC>
 TIT:
 DES:
@@ -18,7 +18,7 @@ FE 1:[...](passo Y)
     * (Ator1->Ator2) Item 1
     * (Ator1->Ator2) Item 2
 </UC>
-##########Legenda##########
+######### Legenda #########
 TIT = Título
 DES = Descrição
 CEN = Cenários
@@ -30,34 +30,89 @@ FE = Fluxo de Exceção
 (Ator1->Ator2) = Ator1 envia menagem ao Ator2
 ###########################
 
-Use Case: Efetuar Login
-	Descrição: Efetua o login de um utilizador do sistema.
-	Cenários: O António pretende efetuar login no sistema.
-	Pré-Condição: Não ter feito login.
-	Pós-Condição: Login efetuado. 
-	Fluxo Normal:
-		1. Utilizador introduz username e password
-		2. Sistema efetua o login
-	Fluxo Excepção 1: [combinação username/password errada](passo 2)
-		2.1. Sistema informa que os dados introduzidos estão incorretos
+<UC>
+TIT: Login
+DES: Efetua o login de um gerente no sistema.
+CEN: O António pretende efetuar login no sistema.
+PreC: Não ter feito login.
+PosC: Login efetuado. 
+FN:
+    * (Gerente->Sistema) Gerente introduz username e password
+    * (Sistema->Sistema) Sistema efetua o login
+FE 1:[combinação username/password errada](passo 2)
+    * (Sistema->Gerente) Sistema informa que os dados introduzidos estão incorretos
+</UC>
 
-Use Case: Efetuar Logout
-	Descrição: Efetua o logout de um utilizador.
-	Cenários: O António pretende efetuar logout do sistema.
-	Pré-Condição: Ter login feito.
-	Pós-Condição: Não possuir login feito.
-	Fluxo Normal:
-		1. Utilizador indica que pretende efetuar logout
-		2. Sistema efetua logout
-		
-Use case: Inserir Artigos
-	Descrição: Adiciona um ou mais artigos ao sistema
-	Cenários: O António pretende inserir no sistema o novo artigo “Prego no Prato” com o preço de 11 euros
-	Pré-Condição: Sistema não ter um artigo com esse nome
-	Pós-Condição: Sistema ter um novo artigo
-	Fluxo Normal:
-		1.Utilizador introduz nome e preço do artigo
-		2.Sistema verifica que artigo não existe
-		3.Sistema adiciona artigo
-	Fluxo Excepção 1: [Sistema já tem artigo] (passo 2)
-		2.1.Sistema informa que artigo já existe
+<UC>
+TIT: Logout
+DES: Efetua o logout de um gerente.
+CEN: O António pretende efetuar logout do sistema.
+PreC: Ter login feito.
+PosC: Não possuir login feito.
+FN:
+    * (Gerente->Sistema) Gerente indica que pretende efetuar logout.
+    * (Sistema->Sistema) Sistema efetua logout.
+</UC>
+
+<UC>
+TIT: Adicionar Funcionários
+DES: Adiciona um Funcionário no sistema.
+CEN: Um Gerente pretende inserir um novo Funcionário no sistema.
+PreC: Login efetuado como Gerente.
+PosC: Funcionário inserido no sistema.
+FN:
+    * (Gerente->Sistema) Gerente indica que pretende inserir Funcionário.
+    * (Gerente->Sistema) Gerente indica o nome, data de nascimento, email e cargo do Funcionário.
+    * (Sistema->Sistema) Sistema valida os dados.
+    * (Sistema->Gerente) Sistema retorna mensagem de sucesso.
+FE 1:[Dados Insuficientes](passo 3)
+    * (Sistema->Gerente) Sistema avisa que os não foram fornecidos todos os dados.
+    * (Sistema->Sistema) Regressa ao passo 2.
+</UC>
+
+<UC>
+TIT: Remover Funcionário
+DES: Remove um Funcionário do Sistema.
+CEN: O Gerente pretende remover um Funcionário que saiu da empresa.
+PreC: Ter sessão iniciada como Gerente e existirem Funcionários no Sistema.
+PosC: Funcionário é removido do Sistema
+FN:
+    * (Gerente->Sistema) Gerente indica que pretende remover um Funcionário.
+    * (Sistema->Sistema) Sistema elimina o Funcionário do Sistema.
+    * (Sistema->Gerente) Sistema informa sobre sucesso.
+</UC>
+
+<UC>
+TIT: Editar Funcionário
+DES: Edita as informações de um Funcionário no Sistema.
+CEN: O Gerente pretende atualizar os dados de um Funcionário.
+PreC: Ter sessão iniciada como Gerente e existirem Funcionários no Sistema.
+PosC: O Funcionário tem os seus dados atualziados
+FN:
+    * (Gerente->Sistema) Gerente indica que pretende editar um Funcionário.
+    * (Gerente->Sistema) Gerente altera os dados pretendidos.
+    * (Sistema->Sistema) Sistema valida os dados.
+    * (Sistema->Gerente) Sistema retorna mensagem de sucesso.
+FE 1:[Dados Insuficientes](passo 3)
+    * (Sistema->Gerente) Sistema avisa que os não foram fornecidos todos os dados.
+    * (Sistema->Sistema) Regressa ao passo 2.
+</UC>
+
+<UC>
+TIT: Adicionar Artigos
+DES: Adiciona um Artigo no Sistema.
+CEN: O Gerente pretende inserir um novo Artigo no Sistema.
+PreC: Ter sessão iniciada como Gerente e existirem Mercadorias.
+PosC: Artigo inserido no Sistema.
+FN:
+    * (Gerente->Sistema) Gerente indica que pretende inserir Artigo.
+    * (Gerente->Sistema) Gerente indica o nome, preço e as Mercadorias e respetivas quantidades que o constituem.
+    * (Sistema->Sistema) Sistema valida os dados.
+    * (Sistema->Gerente) Sistema retorna mensagem de sucesso.
+FE 1:[Dados Insuficientes](passo 3)
+    * (Sistema->Gerente) Sistema avisa que os não foram fornecidos todos os dados.
+    * (Sistema->Sistema) Regressa ao passo 2.
+FE 2:[Artigo Duplicado](passo 3)
+    * (Sistema->Gerente) Sistema avisa que o Artigo já existe.
+    * (Sistema->Sistema) Regressa ao passo 2.
+</UC>
