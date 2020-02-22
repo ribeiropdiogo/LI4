@@ -116,3 +116,109 @@ FE 2:[Artigo Duplicado](passo 3)
     * (Sistema->Gerente) Sistema avisa que o Artigo já existe.
     * (Sistema->Sistema) Regressa ao passo 2.
 </UC>
+
+<UC>
+TIT:Remover Artigos
+DES:Remover um dos artigos que já está no sistema
+CEN:O António quer remover o artigo "Prego no prato" porque o não vão fazer mais
+PreC:O sistema ter pelo menos um artigo
+PosC:O sistema ter menos um artigo que anteriormente
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do artigo a remover
+    * (Sistema->Sistema) Sistema verifica que esse artigo existe
+    * (Sistema->Sistema) Sistema elimina o artigo
+FE 1:[Artigo não existe no sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que esse artigo não existe
+</UC>
+
+<UC>
+TIT:Editar Artigos
+DES:Editar o nome, preço e mercadorias de um artigo
+CEN:O António quer mudar o preço do artigo "Prego no prato"
+PreC:O sistema ter pelo menos um artigo
+PosC:Os dados de um artigo terem sido mudados
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do artigo a editar
+    * (Sistema->Sistema) Sistema verifica que esse artigo existe
+    * (Gerente->Sistema) Gerente escolhe mudar o preço do artigo
+    * (Gerente->Sistema) Gerente insere o novo preço do artigo
+    * (Sistema->Sistema) Sistema muda o preço do artigo para o novo
+FA 1:[Gerente escolhe mudar o nome do artigo](passo 3)
+    * (Gerente->Sistema) Gerente insere o novo nome do artigo
+    * (Sistema->Sistema) Sistema muda o nome do artigo para o novo
+FA 2:[Gerente escolhe mudar as mercadorias do artigo](passo 3.1)
+    * (Gerente->Sistema) Gerente insere as novas mercadorias do artigo
+    * (Sistema->Sistema) Sistema muda as mercadorias do artigo para o novo
+FE 1:[Artigo não existe no sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que esse artigo não existe
+</UC>
+
+<UC>
+TIT:Adicionar Mercadorias
+DES:Adicionar uma nova mercadoria ao sistema 
+CEN:O António quer adicionar a nova mercadoria "Salmão"
+PreC:Gerente estar iniciado no sistema
+PosC:O Sistema ter uma nova mercadoria
+FN:
+    * (Gerente->Sistema) Gerente introduz nome da mercadoria a adicionar
+    * (Sistema->Sistema) Sistema verifica que essa mercadoria não existe
+    * (Gerente->Sistema) Gerente introduz quantidade mínima, marca, stock e observações da mercadoria
+    * (Sistema->Sistema) Sistema guarda mercadoria
+FE 1:[Mercadoria já existe no sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que essa mercadoria já existe
+</UC>
+
+<UC>
+TIT:Remover Mercadorias
+DES:Remover uma das mercadorias que já está no sistema
+CEN:O António quer remover a mercadoria "Salmão" porque já não vai usar artigos com essa mercadoria
+PreC:O sistema ter pelo menos uma mercadoria
+PosC:O sistema ter menos uma mercadoria que anteriormente
+FN:
+    * (Gerente->Sistema) Gerente insere o nome da mercadoria a remover
+    * (Sistema->Sistema) Sistema verifica que esse mercadoria existe
+    * (Sistema->Sistema) Sistema elimina a mercadoria
+FE 1:[Mercadoria não existe no sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que essa mercadoria não existe
+</UC>
+
+<UC>
+TIT:Editar Mercadorias
+DES:Editar os dados de uma mercadoria do sistema 
+CEN:O António quer atualizar o stock da mercadoria "Salmão"
+PreC:O Sistema ter pelo menos uma mercadoria
+PosC:Os dados de uma mercadoria terem sido mudados
+FN:
+    * (Gerente->Sistema) Gerente introduz nome da mercadoria a editar
+    * (Sistema->Sistema) Sistema verifica que mercadoria existe no sistema
+    * (Gerente->Sistema) Gerente indica que quer mudar stock da mercadoria
+    * (Gerente->Sistema) Gerente introduz nova stock do produto
+    * (Sistema->Sistema) Sistema muda a stock da mercadoria
+FA 1:[Gerente indica que quer mudar a quantidade minima](passo 3)
+    * (Gerente->Sistema) Gerente introduz nova quantidade minima
+    * (Sistema->Sistema) Sistema muda a quantidade minima da mercadoria
+FA 2:[Gerente indica que quer mudar a marca](passo 3.1)
+    * (Gerente->Sistema) Gerente introduz nova marca
+    * (Sistema->Sistema) Sistema muda a marca da mercadoria
+FA 3:[Gerente indica que quer mudar as observações](passo 3.1.1)
+    * (Gerente->Sistema) Gerente introduz nova observação
+    * (Sistema->Sistema) Sistema muda a observação da mercadoria
+</UC>
+
+<UC>
+TIT:Adicionar Fornecedores
+DES:Adicionar um novo fornecedor ao Sistema
+CEN:O António tem um novo fornecedor de carne bovina e quer coloca-lo no sistema
+PreC:Gerente estar iniciado no sistema
+PosC:O Sistema ter um novo fornecedor
+FN:
+    * (Gerente->Sistema) Gerente introduz nome e contacto de fornecedor
+    * (Sistema->Sistema) Sistema verifica que esse fornecedor não existe no sistema
+    * (Gerente->Sistema) Gerente introduz lista de mercadorias e preço associado da entrega desse fornecedor
+    * (Sistema->Sistema) Sistema verifica que essas mercadorias existem no sistema
+    * (Sistema->Sistema) Sistema guarda fornecedor
+FE 1:[Fornecedor já existe no sistema](passo 2)
+    * (Sistema->Sistema) Sistema informa que esse fornecedor já existe
+FE 2:[Uma mercadoria não existe no sistema](passo 4)
+    * (Sistema->Gerente) Sistema informa a mercadoria que não existe no sistema
+</UC>
