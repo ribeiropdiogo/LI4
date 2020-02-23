@@ -30,6 +30,8 @@ FE = Fluxo de Exceção
 (Ator1->Ator2) = Ator1 envia menagem ao Ator2
 ###########################
 
+
+########### UC 1 ##########
 <UC>
 TIT: Login
 DES: Efetua o login de um gerente no sistema.
@@ -43,6 +45,7 @@ FE 1:[combinação username/password errada](passo 2)
     * (Sistema->Gerente) Sistema informa que os dados introduzidos estão incorretos
 </UC>
 
+########### UC 2 ##########
 <UC>
 TIT: Logout
 DES: Efetua o logout de um gerente.
@@ -54,6 +57,7 @@ FN:
     * (Sistema->Sistema) Sistema efetua logout.
 </UC>
 
+########### UC 3 ##########
 <UC>
 TIT: Adicionar Funcionários
 DES: Adiciona um Funcionário no sistema.
@@ -70,6 +74,7 @@ FE 1:[Dados Insuficientes](passo 3)
     * (Sistema->Sistema) Regressa ao passo 2.
 </UC>
 
+########### UC 4 ##########
 <UC>
 TIT: Remover Funcionário
 DES: Remove um Funcionário do Sistema.
@@ -82,6 +87,7 @@ FN:
     * (Sistema->Gerente) Sistema informa sobre sucesso.
 </UC>
 
+########### UC 5 ##########
 <UC>
 TIT: Editar Funcionário
 DES: Edita as informações de um Funcionário no Sistema.
@@ -98,6 +104,7 @@ FE 1:[Dados Insuficientes](passo 3)
     * (Sistema->Sistema) Regressa ao passo 2.
 </UC>
 
+########### UC 6 ##########
 <UC>
 TIT: Adicionar Artigos
 DES: Adiciona um Artigo no Sistema.
@@ -221,4 +228,46 @@ FE 1:[Fornecedor já existe no sistema](passo 2)
     * (Sistema->Sistema) Sistema informa que esse fornecedor já existe
 FE 2:[Uma mercadoria não existe no sistema](passo 4)
     * (Sistema->Gerente) Sistema informa a mercadoria que não existe no sistema
+</UC>
+
+########## UC 31 ##########
+<UC>
+TIT: Inserir Artigo em Pedido
+DES: Adiciona um Artigo num Pedido.
+CEN: O António pretende adicionar um determinado Artigo num Pedido.
+PreC: Login efetuado como Funcionário e existir um Pedido.
+PosC: Artigo adicionado ao Pedido
+FN:
+    * (Funcionário->Sistema) Funcionário seleciona o Pedido.
+    * (Funcionário->Sistema) Funcionário indica que pretende adicionar um Artigo.
+    * (Funcionário->Sistema) Funcionário indica qual o Artigo que pretende adicionar.
+    * (Funcionário->Sistema) Funcionário indica a quantidade do Artigo que pretende adicionar.
+    * (Sistema->Sistema) Sistema atualiza o Pedido com as novas alterações.
+    * (Sistema->Funcionário) Sistema informa sobre sucesso da operação.
+FA 1:[Artigo já existente no Pedido](passo 3)
+    * (Funcionário->Sistema) Funcionário indica a quantidade adicional do Artigo que pretende adicionar. 
+    * (Sistema->Sistema) Sistema atualiza a quantidade do Artigo no Pedido.
+    * (Sistema->Funcionário) Sistema informa sobre sucesso da operação.
+FE 1:[Artigo sem Stock](passo 4)
+    * (Sistema->Funcionário) Sistema informa que não existe a quantidade pretendida em Stock.
+    * (Sistema->Sistema) Regressa ao passo 3.
+</UC>
+
+########## UC 32 ##########
+<UC>
+TIT: Remover Artigo de Pedido
+DES: Remove um Artigo de um Pedido.
+CEN: O António pretende corrigir um engano no Pedido e para isso quer remover um Artigo.
+PreC: Login efetuado como Funcionário e existir um Pedido que possua pelo menos um Artigo.
+PosC: Artigo removido de  um Pedido.
+FN:
+    * (Funcionário->Sistema) Funcionário seleciona o Pedido.
+    * (Funcionário->Sistema) Funcionário seleciona o Artigo que pretende remover.
+    * (Sistema->Funcionário) Sistema pede confirmação da operação.
+    * (Funcionário->Sistema) Funcionário confirma que pretende remover o Artigo.
+    * (Sistema->Sistema) Sistema atualiza o Pedido com as novas alterações.
+    * (Sistema->Funcionário) Sistema informa sobre sucesso da operação.
+FA 1:[Funcionário não confirma operação](passo 4)
+    * (Funcionário->Sistema) Funcionário indica que não pretende cofirmar a operação. 
+    * (Sistema->Sistema) Sistema cancela a operação.
 </UC>
