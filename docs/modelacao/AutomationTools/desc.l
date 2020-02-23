@@ -27,22 +27,19 @@ char *getPrec(char * unproc, int len);
 char *getPosc(char * unproc, int len);
 
 int altFluxos, excFluxos, curr, sub;
-// <"/"UC>	                   {closeUC();}
-// <UC>                       {resetbuffers();}
-//\ \t\r]+\*\ ([^\n\r]+->[^\n\r]+) [^\n\r]+\n    {showItem(yytext, yyleng);}
 %}
 
 Abrev ER
 p [^\n\r]+
 s [ \t\r]+
 %%
-\<UC\>\n                   {resetbuffers();}
-TIT:[^\n\r]+\n	               {openUC(getTitle(yytext, yyleng));}
+\<UC\>\n                        {resetbuffers();}
+TIT:[^\n\r]+\n	                {openUC(getTitle(yytext, yyleng));}
 DES:[^\n\r]+\n                  {showDesc(getDesc(yytext, yyleng));}
 CEN:[^\n\r]+\n                  {showCenario(getCenario(yytext, yyleng));}
 PreC:[^\n\r]+\n                 {showPrec(getPrec(yytext, yyleng));}
 PosC:[^\n\r]+\n                 {showPosc(getPosc(yytext, yyleng));}
-FN:\n                      {showFn();}
+FN:\n                           {showFn();}
 FA\ [0-9]+:[^\n]+\n             {showFa(yytext, yyleng);}
 FE\ [0-9]+:[^\n]+\n             {showFe(yytext, yyleng);}
 [ \t]+\*\ \([^\)]+\)\ [^\n\r]+  {showItem(yytext, yyleng);}
