@@ -1,0 +1,21 @@
+<UC>
+TIT:Editar Artigos
+DES:Editar o nome, preço e mercadorias de um artigo
+CEN:O António quer mudar o preço do artigo "Prego no prato"
+PreC:O sistema ter pelo menos um artigo
+PosC:Os dados de um artigo terem sido mudados
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do artigo a editar
+    * (Sistema->Sistema) Sistema verifica que esse artigo existe
+    * (Gerente->Sistema) Gerente escolhe mudar o preço do artigo
+    * (Gerente->Sistema) Gerente insere o novo preço do artigo
+    * (Sistema->Sistema) Sistema muda o preço do artigo para o novo
+FA 1:[Gerente escolhe mudar o nome do artigo](passo 3)
+    * (Gerente->Sistema) Gerente insere o novo nome do artigo
+    * (Sistema->Sistema) Sistema muda o nome do artigo para o novo
+FA 2:[Gerente escolhe mudar as mercadorias do artigo](passo 3.1)
+    * (Gerente->Sistema) Gerente insere as novas mercadorias do artigo
+    * (Sistema->Sistema) Sistema muda as mercadorias do artigo para o novo
+FE 1:[Artigo não existe no sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que esse artigo não existe
+</UC>
