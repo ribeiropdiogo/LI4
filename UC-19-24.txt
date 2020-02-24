@@ -1,0 +1,49 @@
+<UC>
+TIT:Remover Reservas.
+DES:Remover da lista de reservas a reserva de um cliente.
+CEN:O João quer remover a reserva feita pelo Pedro para uma data e hora.
+PreC:O cliente que quer anular uma reserva tem de ter uma reserva já feita.
+PosC:A lista de reservas nao contem a reserva do cliente para a hora em questão.
+FN:
+    * 1.(Gerente->Sistema) Insere o nome do cliente que quer remover a reserva.
+    * 2.(Sistema->Gerente) Mostra as reservas feitas por aquele cliente que ainda estão em aberto.
+    * 3.(Gerente->Sistema) Seleciona a reserva com a data e hora prentendida.
+    * 4.(Sistema->Gerente) Pergunta se tem a certeza da remoção.
+    * 5.(Gerente->Sistema) Confirma a remoção.
+    * 6.(Sistema->Sistema) Remove a reserva da lista de reservas.
+FE 1:[Gerente não confirma remoção](passo 4)
+    * 4.1.(Gerente->Sistema) Não confirma a remoção.
+</UC>
+
+<UC>
+TIT:Editar Reservas.
+DES:Editar da lista de reservas uma reserva feita por um dado cliente a uma hora.
+CEN:O João quer alterar a hora da reserva feita pelo Pedro para uma hora mais tarde.
+PreC:O cliente que quer editar uma reserva tem de ter uma reserva já feita. 
+PosC:A reserva fica editada.
+FN:
+    * 1.(Gerente->Sistema) Insere o nome do cliente que quer editar a reserva.
+    * 2.(Sistema->Gerente) Mostra as reservas feitas por aquele cliente que ainda estão em aberto.
+    * 3.(Gerente->Sistema) Seleciona a reserva com a data e hora antiga e edita a hora.
+    * 4.(Sistema->Sistema) Verifica se existem mesas livres para a nova hora.
+    * 5.(Sistema->Gerente) Informa que a reserva foi editada e qual a nova mesa.
+FE 1:[Não há mesas livres para a nova hora](passo 4)
+    * 4.1.(Sistema->Gerente) Informa que não há mesas livres para a hora pretendida.
+</UC>
+
+<UC>
+TIT:Gerar estatísticas.
+DES:Gerente pede estatísticas sobre o restaurante no ultimo mês.
+CEN:O João pretende saber quantos pregos no prato foram vendidos no mês de Janeiro.
+PreC:Lista de pedidos fechados ou abertos não estar vazia.
+PosC:Estatísticas pedidas mostradas ao gerente.
+FN:
+    * 1.(Gerente->Sistema) Escolhe período de tempo que quer analisar.
+    * 2.(Sistema->Sistema) Recolhe todos os pedidos efetuados no período pretendido.
+    * 3.(Sistema->Gerente) Informa os pedidos feitos, separados por diferentes artigos assim como quantia lucrada. 
+FA 1:[Escolhe ver estatísticas por produto](passo 1.1)
+    * (Gerente->Sistema) Informa que artigo quer analisar.
+    * (Sistema->Gerente) Informa sobre o número de vezes que o artigo foi comprado assim como o lucro que já deu.
+FE 1:[Não há pedidos no intervalo de tempo pretendido](passo 2.1)
+    * (Sistema->Gerente) Informa que não existe nenhum pedido no intervalo de tempo pretendido.
+</UC>
