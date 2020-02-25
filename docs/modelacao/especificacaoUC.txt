@@ -281,9 +281,9 @@ FN:
     * ) «Inserir Artigo em Pedido»
     * (Sistema->Sistema) Sistema regista pedido em estado «por faturar».
 FE 1:[Número de mesa inválido](passo 3)
-	* (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
+    * (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
 FA 1:[Funcionário pretende adicionar mais artigos](passo 5)
-	* ) Regressa ao passo 5.
+    * ) Regressa ao passo 5.
 </UC>
 ########## UC 29 ##########
 <UC>
@@ -302,11 +302,11 @@ FN:
     * (Sistema->Sistema) Sistema fatura o pedido.
     * (Sistema->Funcionar) Sistema apresenta mensagem de sucesso. 
 FE 1:[Número de mesa inválido](passo 3)
-	* (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
+    * (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
 FE 2:[Mesa não possui pedido associado](passo 3)
-	* (Sistema->Funcionario) Sistema alerta que mesa não possui pedido associado.
+    * (Sistema->Funcionario) Sistema alerta que mesa não possui pedido associado.
 FA 1:[Funcinario cancela operação](passo 6)
-	* (Sistema->Sistema) Sistema alerta que a operação foi cancelada.
+    * (Sistema->Sistema) Sistema alerta que a operação foi cancelada.
 </UC>
 ########## UC 30 ##########
 <UC>
@@ -324,15 +324,15 @@ FN:
     * (Sistema->Sistema) Sistema altera mesa associada ao pedido.
     * (Sistema->Funcionario) Sistema avisa que operação foi feita com sucesso.
 FE 1:[Mesa inválida](passo 5)
-	* ) Sistema alerta que mesa indicada é inválida.
+    * ) Sistema alerta que mesa indicada é inválida.
 FE 2:[Mesa já possui pedido associado](passo 5)
-	* ) Sistema alerta que a mesa indicada já possui pedido associado.
+    * ) Sistema alerta que a mesa indicada já possui pedido associado.
 FA 1:[Funcionario pretende eliminar artigos](passo 4)	
-	* ) «Eliminar Artigo de Pedido»
-	* ) Regressa ao passo 7.
+    * ) «Eliminar Artigo de Pedido»
+    * ) Regressa ao passo 7.
 FA 2:[Funcionario pretende adicionar artigos](passo 4)	
-	* ) «Inserir artigo em Pedido»
-	* ) Regressa ao passo 7.
+    * ) «Inserir artigo em Pedido»
+    * ) Regressa ao passo 7.
 </UC>
 ########## UC 31 ##########
 <UC>
