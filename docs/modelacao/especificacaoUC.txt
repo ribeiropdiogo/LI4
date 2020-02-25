@@ -229,7 +229,56 @@ FE 1:[Fornecedor já existe no sistema](passo 2)
 FE 2:[Uma mercadoria não existe no sistema](passo 4)
     * (Sistema->Gerente) Sistema informa a mercadoria que não existe no sistema
 </UC>
-
+########## UC 19 ##########
+<UC>
+TIT:Remover Reservas.
+DES:Remover da lista de reservas a reserva de um cliente.
+CEN:O João quer remover a reserva feita pelo Pedro para uma data e hora.
+PreC:O cliente que quer anular uma reserva tem de ter uma reserva já feita.
+PosC:A lista de reservas nao contem a reserva do cliente para a hora em questão.
+FN:
+    * (Gerente->Sistema) Insere o nome do cliente que quer remover a reserva.
+    * (Sistema->Gerente) Mostra as reservas feitas por aquele cliente que ainda estão em aberto.
+    * (Gerente->Sistema) Seleciona a reserva com a data e hora prentendida.
+    * (Sistema->Gerente) Pergunta se tem a certeza da remoção.
+    * (Gerente->Sistema) Confirma a remoção.
+    * (Sistema->Sistema) Remove a reserva da lista de reservas.
+FE 1:[Gerente não confirma remoção](passo 4)
+    * (Gerente->Sistema) Não confirma a remoção.
+</UC>
+########## UC 20 ##########
+<UC>
+TIT:Editar Reservas.
+DES:Editar da lista de reservas uma reserva feita por um dado cliente a uma hora.
+CEN:O João quer alterar a hora da reserva feita pelo Pedro para uma hora mais tarde.
+PreC:O cliente que quer editar uma reserva tem de ter uma reserva já feita. 
+PosC:A reserva fica editada.
+FN:
+    * (Gerente->Sistema) Insere o nome do cliente que quer editar a reserva.
+    * (Sistema->Gerente) Mostra as reservas feitas por aquele cliente que ainda estão em aberto.
+    * (Gerente->Sistema) Seleciona a reserva com a data e hora antiga e edita a hora.
+    * (Sistema->Sistema) Verifica se existem mesas livres para a nova hora.
+    * (Sistema->Gerente) Informa que a reserva foi editada e qual a nova mesa.
+FE 1:[Não há mesas livres para a nova hora](passo 4)
+    * (Sistema->Gerente) Informa que não há mesas livres para a hora pretendida.
+</UC>
+########## UC 24 ##########
+<UC>
+TIT:Gerar estatísticas.
+DES:Gerente pede estatísticas sobre o restaurante no ultimo mês.
+CEN:O João pretende saber quantos pregos no prato foram vendidos no mês de Janeiro.
+PreC:Lista de pedidos fechados ou abertos não estar vazia.
+PosC:Estatísticas pedidas mostradas ao gerente.
+FN:
+    * (Gerente->Sistema) Escolhe período de tempo que quer analisar.
+    * (Sistema->Sistema) Recolhe todos os pedidos efetuados no período pretendido.
+    * (Sistema->Gerente) Informa os pedidos feitos, separados por diferentes artigos assim como quantia lucrada. 
+FA 1:[Escolhe ver estatísticas por produto](passo 1.1)
+    * (Gerente->Sistema) Informa que artigo quer analisar.
+    * (Sistema->Gerente) Informa sobre o número de vezes que o artigo foi comprado assim como o lucro que já deu.
+FE 1:[Não há pedidos no intervalo de tempo pretendido](passo 2.1)
+    * (Sistema->Gerente) Informa que não existe nenhum pedido no intervalo de tempo pretendido.
+</UC>
 ########## UC 25 ##########
 <UC>
 TIT: Verificar mercadorias em falta.
