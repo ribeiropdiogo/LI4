@@ -238,14 +238,9 @@ CEN: O Gerente Pedro pretende verificar quais as mercadorias no seu restaurante.
 PreC: Sessão iniciada como Gerente.
 PosC: Ficha de mercadorias em falta criada.
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Sistema->Gerente) Gerente indica que pretende verificar marcadorias em falta.
+    * (Sistema->Sistema) Sistema gera ficha com as mercadorias com o stock abaixo do minímo.
+    * (Sistema->Gerente) Sistema apresenta ficha com as mercadorias em falta.
 </UC>
 ########## UC 26 ##########
 <UC>
@@ -255,14 +250,10 @@ CEN: Luís, o empregado de mesa do restaurante, pretende aceder à aplicação p
 PreC: Sessão não iniciada.
 PosC: Sessão iniciada como Funcionário.
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Funcionario->Sistema) Funcionario introduz username e password.
+    * (Sistema->Sistema) Sistema efetua o login.
+FE 1:[combinação username/password errada](passo 2)
+    * (Sistema->Funcionario) Sistema informa que os dados introduzidos estão incorretos.
 </UC>
 ########## UC 27 ##########
 <UC>
@@ -272,14 +263,8 @@ CEN: Luís, o empregado de mesa do restaurante, acabou o seu turno e pretende te
 PreC: Sessão iniciada como Funcionário.
 PosC: Sessão não iniciada.
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Funcionario->Sistema) Funcionario indica que pretende terminar sessão.
+    * (Sistema->Funcionario) Sistema termina sessão.
 </UC>
 ########## UC 28 ##########
 <UC>
@@ -289,14 +274,16 @@ CEN: Luís pretende registar um pedido e associa-lo à mesa 27 do restaurante.
 PreC: Sessão iniciada como funcionário de mesa.
 PosC: Pedido criado em estado «por faturar».
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Funcionario->Sistema) Funcionario indica que pretende registar um pedido.
+    * (Sistema->Gerente) Sistema pede mesa à qual pretende associar o pedido.
+    * (Funcionario->Sistema) Funcionario indica mesa à qual pretende associar.
+    * (Sistema->Sistema) Sistema apresenta lista de artigos que podem ser consumidos.
+    * ) «Inserir Artigo em Pedido»
+    * (Sistema->Sistema) Sistema regista pedido em estado «por faturar».
+FE 1:[Número de mesa inválido](passo 3)
+	* (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
+FA 1:[Funcionário pretende adicionar mais artigos](passo 5)
+	* ) Regressa ao passo 5.
 </UC>
 ########## UC 29 ##########
 <UC>
@@ -306,31 +293,46 @@ CEN: Carlos, o funcionário do balcão, pretende faturar o pedido associado à m
 PreC: Sessão iniciada como funcionário do balcão.
 PosC: Pedido no estado «faturado».
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Funcionar->Sistema) Funcionario indica que pretende faturar um pedido.
+    * (Sistema->Sistema) Sistema pede a mesa da qual pretende faturar o pedido.
+    * (Funcionario->Sistema) Funcionar indica mesa que pretende faturar.
+    * (Sistema->Sistema) Sistema gera recibo com todos os artigos e total a pagar pelo pedido.
+    * (Sistema->Funcionario) Sistema apresenta recibo.
+    * (Funcionario->Sistema) Funcionario confirma faturação.
+    * (Sistema->Sistema) Sistema fatura o pedido.
+    * (Sistema->Funcionar) Sistema apresenta mensagem de sucesso. 
+FE 1:[Número de mesa inválido](passo 3)
+	* (Sistema->Funcionario) Sistema alerta que o número de mesa indicado é inválido.
+FE 2:[Mesa não possui pedido associado](passo 3)
+	* (Sistema->Funcionario) Sistema alerta que mesa não possui pedido associado.
+FA 1:[Funcinario cancela operação](passo 6)
+	* (Sistema->Sistema) Sistema alerta que a operação foi cancelada.
 </UC>
 ########## UC 30 ##########
 <UC>
 TIT: Editar Pedido.
 DES: Permite editar um pedido existente.
-CEN: Por acidente, o Luís indicou que a mesa 27 consumiu 2 Coca-Colas, porém só foi pedida uma. O Luís pretende corrigir o seu erro.
+CEN: Por acidente, o Luís indicou que a mesa 27 consumiu 2 Coca-Colas, porém esta não consumiu bebidas. O Luís pretende corrigir o seu erro.
 PreC: Sessão iniciada como funcionário de mesa.
 PosC: Pedido editado.
 FN:
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FA 1:[...](passo X)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
-FE 1:[...](passo Y)
-    * (Ator1->Ator2) Item 1
-    * (Ator1->Ator2) Item 2
+    * (Funcionario->Sistema) Funcionario seleciona pedido.
+    * (Funcionario->Sistema) Funcionario indica que pretende editar pedido.
+    * (Sistema->Funcionario) Sistema apresenta detalhes do pedido.
+    * (Funcionario->Sistema) Funcionario indica que pretende editar mesa do pedido.
+    * (Funcionario->Sistema) Funcionario indica nova mesa à qual associar.
+    * (Sistema->Sistema) Sistema altera mesa associada ao pedido.
+    * (Sistema->Funcionario) Sistema avisa que operação foi feita com sucesso.
+FE 1:[Mesa inválida](passo 5)
+	* ) Sistema alerta que mesa indicada é inválida.
+FE 2:[Mesa já possui pedido associado](passo 5)
+	* ) Sistema alerta que a mesa indicada já possui pedido associado.
+FA 1:[Funcionario pretende eliminar artigos](passo 4)	
+	* ) «Eliminar Artigo de Pedido»
+	* ) Regressa ao passo 7.
+FA 2:[Funcionario pretende adicionar artigos](passo 4)	
+	* ) «Inserir artigo em Pedido»
+	* ) Regressa ao passo 7.
 </UC>
 ########## UC 31 ##########
 <UC>
