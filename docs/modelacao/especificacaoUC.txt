@@ -281,7 +281,7 @@ FN:
 FE 1:[Funcionário não existe no Sistema](passo 2)
     * (Sistema->Gerente) Sistema informa que o Funcionário inserido não existe.
 FE 2:[Funcionário já tem esse horário](passo 4)
-    * (Sistema->Gerente) Sistema informa que esse o Funcionário já tem o horário inserido..
+    * (Sistema->Gerente) Sistema informa que esse o Funcionário já tem o horário inserido.
 </UC>
 
 ########## UC 16 ##########
@@ -323,7 +323,7 @@ FE 1:[Funcionário não existe no Sistema](passo 2)
 <UC>
 TIT:Adicionar Reserva.
 DES:Funcionário adiciona reserva à lista de reservas de um Cliente.
-CEN:O Luís quer adicionar a reserva feita pelo Pedro para uma data e hora.
+CEN:O Luís quer adicionar uma reserva feita pelo Pedro para uma data e hora.
 PreC:Funcionário autenticado no Sistema.
 PosC:A lista de reservas de determinado Cliente tem mais uma reserva.
 FN:
@@ -334,8 +334,9 @@ FN:
     * (Sistema->Sistema) Sistema adiciona a reserva à lista de reservas.
 FA 1:[Cliente ainda não tem lista de reservas](passo 2)
     * (Sistema->Sistema) Sistema cria lista de reservas para o Cliente inserido.
+    * (Sistema->Sistema) Avança para o passo 3.
 FE 1:[Cliente já tem reserva para essa data e hora](passo 4)
-    * (Sistema->Gerente) Sistema informa que o Cliente já tem reserva para a data e hora inserida
+    * (Sistema->Gerente) Sistema informa que o Cliente já tem reserva para a data e hora inserida.
 </UC>
 
 ########## UC 19 ##########
