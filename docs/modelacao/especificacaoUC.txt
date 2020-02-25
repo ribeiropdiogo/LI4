@@ -229,6 +229,115 @@ FE 1:[Fornecedor já existe no sistema](passo 2)
 FE 2:[Uma mercadoria não existe no sistema](passo 4)
     * (Sistema->Gerente) Sistema informa a mercadoria que não existe no sistema
 </UC>
+
+########## UC 13 ##########
+<UC>
+TIT:Remover Fornecedor.
+DES:Gerente remove Fornecedor que se encontra no Sistema.
+CEN:O Pedro quer remover o Fornecedor "Made in Italy" porque os produtos que fornece perderam qualidade.
+PreC:Gerente autenticado no Sistema e o Sistema tem pelo menos um Fornecedor.
+PosC:O Sistema tem menos um Fornecedor.
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do Fornecedor a remover.
+    * (Sistema->Sistema) Sistema verifica que esse Fornecedor existe.
+    * (Sistema->Sistema) Sistema elimina o Fornecedor.
+FE 1:[Fornecedor não existe no Sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que o Fornecedor inserido não existe.
+</UC>
+
+########## UC 14 ##########
+<UC>
+TIT:Editar Fornecedor.
+DES:Gerente edita o nome e/ou contacto de um Fornecedor.
+CEN:O Pedro quer mudar o contacto do Fornecedor "Super Bock".
+PreC:Gerente autenticado no Sistema e o Sistema tem pelo menos um Fornecedor.
+PosC:Os dados de determinado Fornecedor foram alterados.
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do Fornecedor a editar.
+    * (Sistema->Sistema) Sistema verifica que esse Fornecedor existe.
+    * (Gerente->Sistema) Gerente escolhe mudar o contacto do Fornecedor.
+    * (Gerente->Sistema) Gerente insere o novo contacto do Fornecedor.
+    * (Sistema->Sistema) Sistema altera o contacto do Fornecedor.
+FA 1:[Gerente escolhe mudar o nome do Fornecedor](passo 3)
+    * (Gerente->Sistema) Gerente insere o novo nome do Fornecedor.
+    * (Sistema->Sistema) Sistema altera o nome do Fornecedor.
+FE 1:[Fornecedor não existe no Sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que o Fornecedor inserido não existe.
+</UC>
+
+########## UC 15 ##########
+<UC>
+TIT:Adicionar Horário.
+DES:Gerente adiciona novo horário a um Funcionário.
+CEN:O Pedro quer adicionar o horário 23h-24h ao João.
+PreC:Gerente autenticado no Sistema e o Sistema tem pelo menos um Funcionário.
+PosC:A lista de horários de determinado Funcionário tem mais um horário.
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do Funcionário a adicionar horário.
+    * (Sistema->Sistema) Sistema verifica que esse Funcionário existe.
+    * (Gerente->Sistema) Gerente introduz novo horário.
+    * (Sistema->Sistema) Sistema verifica que o Funcionário não tem esse horário.
+    * (Sistema->Sistema) Sistema adiciona novo horário à lista de horários do Funcionário.
+FE 1:[Funcionário não existe no Sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que o Funcionário inserido não existe.
+FE 2:[Funcionário já tem esse horário](passo 4)
+    * (Sistema->Gerente) Sistema informa que esse o Funcionário já tem o horário inserido..
+</UC>
+
+########## UC 16 ##########
+<UC>
+TIT:Remover Horário.
+DES:Gerente remove horário a um Funcionário.
+CEN:O Pedro quer remover o horário 13h-14h ao Luís.
+PreC:Gerente autenticado no Sistema e o Sistema tem pelo menos um Funcionário.
+PosC:A lista de horários de determinado Funcionário tem menos um horário.
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do Funcionário a remover horário.
+    * (Sistema->Sistema) Sistema verifica que esse Funcionário existe.
+    * (Gerente->Sistema) Gerente introduz novo horário.
+    * (Sistema->Sistema) Sistema verifica que o Funcionário tem o horário inserido.
+    * (Sistema->Sistema) Sistema remove o horário inserido à lista de horários do Funcionário.
+FE 1:[Funcionário não existe no Sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que o Funcionário inserido não existe.
+FE 2:[Funcionário não tem o horário inserido](passo 4)
+    * (Sistema->Gerente) Sistema informa que o Funcionário não tem o horário inserido.
+</UC>
+
+########## UC 17 ##########
+<UC>
+TIT:Editar Horário.
+DES:Gerente edita o horário de um Funcionário.
+CEN:O Pedro quer editar o horário do José porque vai trocar uma folga com um colega.
+PreC:Gerente autenticado no Sistema e o Sistema tem pelo menos um Funcionário.
+PosC:A lista de horários de determinado Funcionário foram alterados.
+FN:
+    * (Gerente->Sistema) Gerente insere o nome do Funcionário a editar.
+    * (Sistema->Sistema) Sistema verifica que esse Funcionário existe.
+    * (Gerente->Sistema) Gerente edita o horário do Funcionário.
+    * (Sistema->Sistema) Sistema altera o horário do Funcionário.
+FE 1:[Funcionário não existe no Sistema](passo 2)
+    * (Sistema->Gerente) Sistema informa que o Funcionário inserido não existe.
+</UC>
+
+########## UC 18 ##########
+<UC>
+TIT:Adicionar Reserva.
+DES:Funcionário adiciona reserva à lista de reservas de um Cliente.
+CEN:O Luís quer adicionar a reserva feita pelo Pedro para uma data e hora.
+PreC:Funcionário autenticado no Sistema.
+PosC:A lista de reservas de determinado Cliente tem mais uma reserva.
+FN:
+    * (Gerente->Sistema) Insere o nome do Cliente que quer adicionar a reserva.
+    * (Sistema->Sistema) Sistema verifica que o Cliente tem lista de reservas.
+    * (Gerente->Sistema) Insere a data e hora que o Cliente pretende fazer reserva.
+    * (Sistema->Sistema) Sistema verifica que o Cliente ainda não tem reserva para essa data e hora.
+    * (Sistema->Sistema) Sistema adiciona a reserva à lista de reservas.
+FA 1:[Cliente ainda não tem lista de reservas](passo 2)
+    * (Sistema->Sistema) Sistema cria lista de reservas para o Cliente inserido.
+FE 1:[Cliente já tem reserva para essa data e hora](passo 4)
+    * (Sistema->Gerente) Sistema informa que o Cliente já tem reserva para a data e hora inserida
+</UC>
+
 ########## UC 19 ##########
 <UC>
 TIT:Remover Reservas.
