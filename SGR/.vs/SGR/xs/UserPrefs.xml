@@ -1,0 +1,39 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{C1D9700B-A7E7-4946-910B-E3D871A1800B}|Default">
+  <MonoDevelop.Ide.ItemProperties.SGR PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SGR/Views/Funcionários/Editar.cshtml">
+    <Files>
+      <File FileName="SGR/Views/Funcionários/Detalhes.cshtml" Line="80" Column="21" />
+      <File FileName="SGR/Views/Funcionários/Eliminar.cshtml" Line="84" Column="101" />
+      <File FileName="SGR/Views/Funcionários/Adicionar.cshtml" Line="67" Column="78" />
+      <File FileName="SGR/Views/Funcionários/Editar.cshtml" Line="69" Column="109" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SGR" expanded="True">
+            <Node name="SGR" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Funcionários" expanded="True">
+                  <Node name="Editar.cshtml" selected="True" />
+                </Node>
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
