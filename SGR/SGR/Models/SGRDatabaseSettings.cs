@@ -3,14 +3,14 @@ namespace SGR.Models
     {
         public class SGRDatabaseSettings : ISGRDatabaseSettings
         {
-            public string FuncionáriosCollectionName { get; set; }
+            public string FuncionarioCollectionName { get; set; }
             public string ConnectionString { get; set; }
             public string DatabaseName { get; set; }
         }
 
         public interface ISGRDatabaseSettings
     {
-            string FuncionáriosCollectionName { get; set; }
+            string FuncionarioCollectionName { get; set; }
             string ConnectionString { get; set; }
             string DatabaseName { get; set; }
         }

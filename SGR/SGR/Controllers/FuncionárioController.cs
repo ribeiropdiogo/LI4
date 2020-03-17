@@ -11,12 +11,12 @@ using System;
 
 namespace SGR.Controllers
 {
-    public class FuncionáriosController : Controller
+    public class FuncionárioController : Controller
     {
 
         private SGRContext db;
 
-        public FuncionáriosController(SGRContext context)
+        public FuncionárioController(SGRContext context)
         {
             db = context;
         }
@@ -24,7 +24,7 @@ namespace SGR.Controllers
 
         public async Task<IActionResult> Index()
         { 
-            return View(await db.Funcionários.ToListAsync());
+            return View(await db.Funcionario.ToListAsync());
         }
 
 
@@ -35,7 +35,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
-            Funcionário funcionario = db.Funcionários.Find(id);
+            Funcionário funcionario = db.Funcionario.Find(id);
             if (funcionario == null)
             {
                 return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
-            Funcionário f = db.Funcionários.Find(id);
+            Funcionário f = db.Funcionario.Find(id);
             if (f == null)
             {
                 return RedirectToAction("Index");
@@ -106,7 +106,7 @@ namespace SGR.Controllers
             {
                 ViewBag.ErrorMessage = "Eliminar falhou. Tente outra vez, e se o problema persistir contacte o administrador.";
             }
-            Funcionário f = db.Funcionários.Find(id);
+            Funcionário f = db.Funcionario.Find(id);
             if (f == null)
             {
                 return NotFound();
@@ -120,8 +120,8 @@ namespace SGR.Controllers
         {
             try
             {
-                Funcionário f = db.Funcionários.Find(id);
-                db.Funcionários.Remove(f);
+                Funcionário f = db.Funcionario.Find(id);
+                db.Funcionario.Remove(f);
                 await db.SaveChangesAsync();
             }
             catch (RetryLimitExceededException/* dex */)

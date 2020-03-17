@@ -68,7 +68,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
+         with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="nav-icon fas fa-home"></i>
@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a class="nav-link" asp-area="" asp-controller="Funcionários" asp-action="Index">
+                            <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Index">
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p>
                                     Funcionários
@@ -87,15 +87,38 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Funcionários" asp-action="Adicionar">
+                                    <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Adicionar">
                                         <i class="nav-icon fas fa-plus"></i>
                                         <p>Adicionar Funcionário</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Funcionários" asp-action="Index">
+                                    <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Index">
                                         <i class="nav-icon fas fa-list"></i>
                                         <p>Ver Funcionários</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Index">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Gerentes
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar Gerente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver Gerentes</p>
                                     </a>
                                 </li>
                             </ul>

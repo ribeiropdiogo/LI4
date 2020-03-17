@@ -11,7 +11,8 @@ namespace SGR.Data
         {
         }
 
-        public DbSet<Funcionário> Funcionários { get; set; }
+        public DbSet<Funcionário> Funcionario { get; set; }
+        public DbSet<Gerente> Gerente { get; set; }
 
     }   
 }

@@ -8,8 +8,9 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
-    <Folder Include="Views\Funcionários\" />
+    <Folder Include="Views\Gerente\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Funcionário\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />
