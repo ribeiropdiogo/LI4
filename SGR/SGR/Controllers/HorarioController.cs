@@ -12,12 +12,12 @@ using System.Collections.Generic;
 
 namespace SGR.Controllers
 {
-    public class GerenteController : Controller
+    public class HorarioController : Controller
     {
 
         private SGRContext db;
 
-        public GerenteController(SGRContext context)
+        public HorarioController(SGRContext context)
         {
             db = context;
         }
@@ -25,51 +25,51 @@ namespace SGR.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await db.Gerente.ToListAsync());
+            return View(await db.Horario.ToListAsync());
         }
 
 
-        // GET: Gerente/Detalhes/5
+        // GET: Horario/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            Gerente gerente = db.Gerente.Find(id);
-            if (gerente == null)
+            Horario horario = db.Horario.Find(id);
+            if (horario == null)
             {
                 return RedirectToAction("Index");
             }
-            return View(gerente);
+            return View(horario);
         }
 
-        // GET: Gerente/Adicionar
+        // GET: Horario/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
-        // POST: Gerente/Adicionar
+        // POST: Horario/Adicionar
         [HttpPost]
-        public async Task<IActionResult> Adicionar(Gerente gerente)
+        public async Task<IActionResult> Adicionar(Horario horario)
         {
             if (!ModelState.IsValid)
-                return View(gerente);
+                return View(horario);
 
-            db.Add(gerente);
+            db.Add(horario);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        // GET: Gerente/Editar/5
+        // GET: Horario/Editar/5
         public ActionResult Editar(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            Gerente f = db.Gerente.Find(id);
+            Horario f = db.Horario.Find(id);
             if (f == null)
             {
                 return RedirectToAction("Index");
@@ -77,26 +77,26 @@ namespace SGR.Controllers
             return View(f);
         }
 
-        // POST: Gerente/Editar/5
+        // POST: Horario/Editar/5
         [HttpPost, ActionName("Editar")]
-        public async Task<IActionResult> EditarPost(int id, Gerente gerente)
+        public async Task<IActionResult> EditarPost(int id, Horario horario)
         {
-            if (id != gerente.Id)
+            if (id != horario.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                db.Update(gerente);
+                db.Update(horario);
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
-            return View(gerente);
+            return View(horario);
         }
 
-        // GET: Gerente/Eliminar/5
+        // GET: Horario/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace SGR.Controllers
             {
                 ViewBag.ErrorMessage = "Eliminar falhou. Tente outra vez, e se o problema persistir contacte o administrador.";
             }
-            Gerente f = db.Gerente.Find(id);
+            Horario f = db.Horario.Find(id);
             if (f == null)
             {
                 return NotFound();
@@ -115,18 +115,24 @@ namespace SGR.Controllers
             return View(f);
         }
 
-        // POST: Gerente/Eliminar/5
+        // POST: Horario/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
             {
-                Gerente f = db.Gerente.Find(id);
-                List<Reserva> rs = await db.Reserva.ToListAsync();
-                foreach (Reserva r in rs)
-                    if (r.IdGerente.Equals(id))
-                        db.Reserva.Remove(r);
-                db.Gerente.Remove(f);
+                Horario f = db.Horario.Find(id);
+                List<DataHora> dhs = await db.DataHora.ToListAsync();
+                foreach (DataHora dh in dhs)
+                    if (dh.IdHorario.Equals(id))
+                        db.DataHora.Remove(dh);
+                List<Funcionario> fs = await db.Funcionario.ToListAsync();
+                foreach (Funcionario fu in fs)
+                    if (fu.IdHorario.Equals(id)) {
+                        fu.IdHorario = 0;
+                        db.Update(fu);
+                    }
+                db.Horario.Remove(f);
                 await db.SaveChangesAsync();
             }
             catch (RetryLimitExceededException/* dex */)

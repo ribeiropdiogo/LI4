@@ -10,7 +10,11 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="Views\Gerente\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Funcionário\" />
+    <Folder Include="Views\Funcionario\" />
+    <Folder Include="Views\Horario\" />
+    <Folder Include="Views\DataHora\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Views\Reserva\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />
@@ -18,6 +22,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +34,7 @@
     <PackageReference Include="MySql.Data" Version="8.0.19" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
   </ItemGroup>
   <ItemGroup>
     
@@ -33,5 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Models\FuncionáriosDatabaseSettings.cs" />
+    <Compile Remove="Models\Horario %28copy%29.cs" />
+    <Compile Remove="Migrations\20200318151619_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\SGRContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\Pedido.cs" />
+    <Compile Remove="Migrations\mydbContext.cs" />
+    <Compile Remove="Migrations\PrecoMercadoriaFornecedor.cs" />
+    <Compile Remove="Migrations\Reserva.cs" />
+    <Compile Remove="Migrations\20200318151619_InitialCreate.cs" />
+    <Compile Remove="Migrations\MercadoriaInArtigo.cs" />
+    <Compile Remove="Migrations\Mercadoria.cs" />
+    <Compile Remove="Migrations\Horario.cs" />
+    <Compile Remove="Migrations\Mesa.cs" />
+    <Compile Remove="Migrations\Gerente.cs" />
   </ItemGroup>
 </Project>

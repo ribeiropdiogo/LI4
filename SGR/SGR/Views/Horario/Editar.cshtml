@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Gerentes";
+    ViewData["Title"] = "Horários";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Gerente
+@model SGR.Models.Horario
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Horários</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Horários</li>
                 </ol>
             </div>
         </div>
@@ -36,23 +36,13 @@
         <div class="card-body">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h5 class="m-0">Editar Gerentes</h5>
+                    <h5 class="m-0">Editar Horários</h5>
                 </div>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
                 <div class="card-body">
                     <form role="form">
                         <div class="card-body">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>
                             <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
                             @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
                         </div>

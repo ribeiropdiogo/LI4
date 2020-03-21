@@ -3,7 +3,7 @@
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Funcionário
+@model SGR.Models.Funcionario
 
 @section Styles
 {
@@ -33,7 +33,7 @@
     <div class="card-body">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">Detalhes Funcionário</h5>
+                <h5 class="m-0">Confirmação</h5>
             </div>
             <div class="card-body">
 
@@ -42,6 +42,38 @@
                     <h4>Funcionário</h4>
                     <hr />
                     <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Password)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DataNascimento)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DataNascimento)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Morada)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Morada)
+                        </dd>
+
                         <dt>
                             @Html.DisplayNameFor(model => model.Nome)
                         </dt>
@@ -59,27 +91,34 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Email)
+                            @Html.DisplayNameFor(model => model.IdHorario)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Email)
+                            @Html.DisplayFor(model => model.IdHorario)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.DataNascimento)
+                            @Html.DisplayNameFor(model => model.IdGerente)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.DataNascimento)
+                            @Html.DisplayFor(model => model.IdGerente)
                         </dd>
                     </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" value="Eliminar" class="btn btn-primary">Eliminar</button>
+                    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
+                </div>
+                    }
                 </div>
 
-                <p>
-                    @Html.ActionLink("Editar", "Editar", new { id = Model.id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Voltar", "Index", new {  }, new { @class = "btn btn-primary" })
-                </p>
+
 
             </div>
         </div>

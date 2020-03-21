@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SGR.Models;
 
-namespace SGR.Data
+namespace SGR.Migrations
 {
-    public partial class SGRContext : DbContext
+    public partial class mydbContext : DbContext
     {
-        public SGRContext()
+        public mydbContext()
         {
         }
 
-        public SGRContext(DbContextOptions<SGRContext> options)
+        public mydbContext(DbContextOptions<mydbContext> options)
             : base(options)
         {
         }
@@ -30,6 +28,15 @@ namespace SGR.Data
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<PrecoMercadoriaFornecedor> PrecoMercadoriaFornecedor { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySql("server=localhost;port=3306;database=mydb;uid=root;sslmode=Preferred", x => x.ServerVersion("8.0.18-mysql"));
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -453,17 +460,8 @@ namespace SGR.Data
             });
 
             OnModelCreatingPartial(modelBuilder);
-
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            }
-
-            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        
-}
+    }
 }

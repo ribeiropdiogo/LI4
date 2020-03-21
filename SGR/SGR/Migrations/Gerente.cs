@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace SGR.Models
+namespace SGR.Migrations
 {
     public partial class Gerente
     {
@@ -14,14 +13,7 @@ namespace SGR.Models
         }
 
         public int Id { get; set; }
-
-
-        [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Por favor forneça o Email")]
         public string Email { get; set; }
-
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Por favor forneça a Password")]
         public string Password { get; set; }
 
         public virtual ICollection<Fornecedor> Fornecedor { get; set; }

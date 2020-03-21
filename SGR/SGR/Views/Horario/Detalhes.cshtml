@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Gerentes";
+    ViewData["Title"] = "Horários";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Gerente
+@model SGR.Models.Horario
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Horários</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Horários</li>
                 </ol>
             </div>
         </div>
@@ -33,44 +33,23 @@
     <div class="card-body">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">Confirmação</h5>
+                <h5 class="m-0">Detalhes Horário</h5>
             </div>
             <div class="card-body">
 
                 <p class="error">@ViewBag.ErrorMessage</p>
                 <div>
-                    <h4>Gerente</h4>
+                    <h4>Horário</h4>
                     <hr />
                     <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Email)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Password)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Password)
-                        </dd>
+                        
                     </dl>
-
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
-                <div class="form-actions no-color">
-                    <button type="submit" value="Eliminar" class="btn btn-primary">Eliminar</button>
-                    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
-                </div>
-                    }
                 </div>
 
-
+                <p>
+                    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Voltar", "Index", new {  }, new { @class = "btn btn-primary" })
+                </p>
 
             </div>
         </div>

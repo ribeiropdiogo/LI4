@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Gerentes";
+    ViewData["Title"] = "Reservas";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Gerente
+@model SGR.Models.Reserva
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Reservas</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Reservas</li>
                 </ol>
             </div>
         </div>
@@ -39,23 +39,39 @@
 
                 <p class="error">@ViewBag.ErrorMessage</p>
                 <div>
-                    <h4>Gerente</h4>
+                    <h4>Reserva</h4>
                     <hr />
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.Email)
+                            @Html.DisplayNameFor(model => model.DataHora)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Email)
+                            @Html.DisplayFor(model => model.DataHora)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Password)
+                            @Html.DisplayNameFor(model => model.NomeCliente)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Password)
+                            @Html.DisplayFor(model => model.NomeCliente)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NifCliente)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NifCliente)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IdGerente)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.IdGerente)
                         </dd>
                     </dl>
 

@@ -68,7 +68,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="nav-icon fas fa-home"></i>
@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Index">
+                            <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Index">
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p>
                                     Funcionários
@@ -87,13 +87,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Adicionar">
+                                    <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Adicionar">
                                         <i class="nav-icon fas fa-plus"></i>
                                         <p>Adicionar Funcionário</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Funcionário" asp-action="Index">
+                                    <a class="nav-link" asp-area="" asp-controller="Funcionario" asp-action="Index">
                                         <i class="nav-icon fas fa-list"></i>
                                         <p>Ver Funcionários</p>
                                     </a>
@@ -102,7 +102,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Index">
-                                <i class="nav-icon fas fa-user-friends"></i>
+                                <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Gerentes
                                     <i class="fas fa-angle-left right"></i>
@@ -119,6 +119,64 @@
                                     <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Index">
                                         <i class="nav-icon fas fa-list"></i>
                                         <p>Ver Gerentes</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link" asp-area="" asp-controller="Horario" asp-action="Index">
+                                <i class="nav-icon fas fa-clock"></i>
+                                <p>
+                                    Horários
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Horario" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar Horário</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Horario" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver Horários</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="DataHora" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar Datas e Horas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="DataHora" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver Datas e Horas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link" asp-area="" asp-controller="Reserva" asp-action="Index">
+                                <i class="nav-icon fas fa-utensils"></i>
+                                <p>
+                                    Reservas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Reserva" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar Reserva</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Reserva" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver Reservas</p>
                                     </a>
                                 </li>
                             </ul>

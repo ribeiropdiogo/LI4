@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Gerentes";
+    ViewData["Title"] = "Reservas";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model IEnumerable<SGR.Models.Gerente>
+@model IEnumerable<SGR.Models.Reserva>
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Reservas</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Reservas</li>
                 </ol>
             </div>
         </div>
@@ -37,29 +37,35 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>Data/Hora</th>
+                        <th>Nome Cliente</th>
+                        <th>NIF Cliente</th>
+                        <th>Gerente</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Password)</td>
-                            <td>
-                                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                                <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.DataHora)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NomeCliente)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NifCliente)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdGerente)</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>Data/Hora</th>
+                        <th>Nome Cliente</th>
+                        <th>NIF Cliente</th>
+                        <th>Gerente</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>

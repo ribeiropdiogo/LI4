@@ -3,7 +3,7 @@
     ViewData["User"] = "Chuck Norris";
 }
 
-@model IEnumerable<SGR.Models.Funcionário>
+@model IEnumerable<SGR.Models.Funcionario>
 
 @section Styles
 {
@@ -37,35 +37,38 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Data Nascimento</th>
                         <th>Email</th>
+                        <th>Nome</th>
                         <th>Cargo</th>
+                        <th>Id Horário</th>
+                        <th>Id Gerente</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                            <td>@Html.DisplayFor(modelItem => item.DataNascimento)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Cargo)</td>
-                            <td>
-                                <a asp-action="Editar" asp-route-id="@item.id">Editar</a> |
-                                <a asp-action="Detalhes" asp-route-id="@item.id">Detalhes</a> |
-                                <a asp-action="Eliminar" asp-route-id="@item.id">Eliminar</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cargo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdHorario)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdGerente)</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Nome</th>
-                        <th>Data Nascimento</th>
                         <th>Email</th>
+                        <th>Nome</th>
                         <th>Cargo</th>
+                        <th>Id Horário</th>
+                        <th>Id Gerente</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>

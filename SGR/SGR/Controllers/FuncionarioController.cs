@@ -8,68 +8,67 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
-using System.Collections.Generic;
 
 namespace SGR.Controllers
 {
-    public class GerenteController : Controller
+    public class FuncionarioController : Controller
     {
 
         private SGRContext db;
 
-        public GerenteController(SGRContext context)
+        public FuncionarioController(SGRContext context)
         {
             db = context;
         }
 
 
         public async Task<IActionResult> Index()
-        {
-            return View(await db.Gerente.ToListAsync());
+        { 
+            return View(await db.Funcionario.ToListAsync());
         }
 
 
-        // GET: Gerente/Detalhes/5
+        // GET: Funcionario/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            Gerente gerente = db.Gerente.Find(id);
-            if (gerente == null)
+            Funcionario funcionario = db.Funcionario.Find(id);
+            if (funcionario == null)
             {
                 return RedirectToAction("Index");
             }
-            return View(gerente);
+            return View(funcionario);
         }
 
-        // GET: Gerente/Adicionar
+        // GET: Funcionario/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
-        // POST: Gerente/Adicionar
+        // POST: Funcionario/Adicionar
         [HttpPost]
-        public async Task<IActionResult> Adicionar(Gerente gerente)
+        public async Task<IActionResult> Adicionar(Funcionario funcionario)
         {
             if (!ModelState.IsValid)
-                return View(gerente);
+                return View(funcionario);
 
-            db.Add(gerente);
+            db.Add(funcionario);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        // GET: Gerente/Editar/5
+        // GET: Funcionario/Editar/5
         public ActionResult Editar(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
-            Gerente f = db.Gerente.Find(id);
+            Funcionario f = db.Funcionario.Find(id);
             if (f == null)
             {
                 return RedirectToAction("Index");
@@ -77,26 +76,26 @@ namespace SGR.Controllers
             return View(f);
         }
 
-        // POST: Gerente/Editar/5
+        // POST: Funcionario/Editar/5
         [HttpPost, ActionName("Editar")]
-        public async Task<IActionResult> EditarPost(int id, Gerente gerente)
+        public async Task<IActionResult> EditarPost(int id, Funcionario funcionario)
         {
-            if (id != gerente.Id)
+            if (id != funcionario.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                db.Update(gerente);
+                db.Update(funcionario);
                 await db.SaveChangesAsync();
-
+                
                 return RedirectToAction("Index");
             }
-            return View(gerente);
+            return View(funcionario);
         }
 
-        // GET: Gerente/Eliminar/5
+        // GET: Funcionario/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -107,7 +106,7 @@ namespace SGR.Controllers
             {
                 ViewBag.ErrorMessage = "Eliminar falhou. Tente outra vez, e se o problema persistir contacte o administrador.";
             }
-            Gerente f = db.Gerente.Find(id);
+            Funcionario f = db.Funcionario.Find(id);
             if (f == null)
             {
                 return NotFound();
@@ -115,18 +114,14 @@ namespace SGR.Controllers
             return View(f);
         }
 
-        // POST: Gerente/Eliminar/5
+        // POST: Funcionario/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)
         {
             try
             {
-                Gerente f = db.Gerente.Find(id);
-                List<Reserva> rs = await db.Reserva.ToListAsync();
-                foreach (Reserva r in rs)
-                    if (r.IdGerente.Equals(id))
-                        db.Reserva.Remove(r);
-                db.Gerente.Remove(f);
+                Funcionario f = db.Funcionario.Find(id);
+                db.Funcionario.Remove(f);
                 await db.SaveChangesAsync();
             }
             catch (RetryLimitExceededException/* dex */)

@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Gerentes";
+    ViewData["Title"] = "Horários";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model IEnumerable<SGR.Models.Gerente>
+@model IEnumerable<SGR.Models.Horario>
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Horários</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Horários</li>
                 </ol>
             </div>
         </div>
@@ -37,8 +37,8 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>id</th>
+                        <th>Nome</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -46,8 +46,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td>nome do horario?</td>
                             <td>
                                 <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
                                 <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |

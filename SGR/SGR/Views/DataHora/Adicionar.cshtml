@@ -1,9 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Gerentes";
+﻿@model SGR.Models.DataHora;
+
+@{
+    ViewData["Title"] = "Data Hora";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Gerente
+
 
 @section Styles
 {
@@ -16,12 +18,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Gerentes</h1>
+                <h1>Data Hora</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Gerentes</li>
+                    <li class="breadcrumb-item active">Data Hora</li>
                 </ol>
             </div>
         </div>
@@ -36,23 +38,22 @@
         <div class="card-body">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h5 class="m-0">Adicionar Gerente</h5>
+                    <h5 class="m-0">Adicionar Data Hora</h5>
                 </div>
                 @Html.ValidationSummary(true)
                 <div class="card-body">
                     <form role="form">
                         <div class="card-body">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control"} })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.DataHora1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.DataHora1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DataHora1, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                @Html.LabelFor(model => model.IdHorario, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.IdHorario, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IdHorario, "", new { @class = "text-danger" })
                             </div>
-                            
                             <button type="submit" value="Adicionar" class="btn btn-primary">Adicionar</button>
                         </div>
                         <!-- /.card-body -->
@@ -66,18 +67,18 @@
 
 @section Scripts
 {
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-        <script>$(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });</script>
-    }
+    <script>$(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}
