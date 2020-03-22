@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Reservas";
+    ViewData["User"] = "Chuck Norris";
+}
+
+@model SGR.Models.Reserva
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Reservas</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Reservas</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!-- Main content -->
+    <section class="content">
+        <div class="card-body">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="m-0">Editar Reserva</h5>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="card-body">
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DataHora, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.DataHora, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.ValidationMessageFor(model => model.DataHora, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NomeCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.NomeCliente, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NomeCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NifCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.NifCliente, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NifCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdGerente, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.IdGerente, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IdGerente, "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+                            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+}
+
+@section Scripts
+{
+        <script src="~/lib/datatables/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+        <script>$(function () {
+                $("#example1").DataTable();
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                });
+            });</script>
+    }

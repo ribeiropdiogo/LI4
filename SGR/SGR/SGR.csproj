@@ -15,6 +15,10 @@
     <Folder Include="Views\DataHora\" />
     <Folder Include="Migrations\" />
     <Folder Include="Views\Reserva\" />
+    <Folder Include="Views\Fornecedor\" />
+    <Folder Include="Views\Mesa\" />
+    <Folder Include="Views\Pedido\" />
+    <Folder Include="Views\Artigo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />

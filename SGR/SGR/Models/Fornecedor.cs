@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SGR.Models
 {
@@ -11,8 +12,16 @@ namespace SGR.Models
         }
 
         public int Id { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Por favor forneça o Email")]
         public string Email { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Required(ErrorMessage = "Por favor forneça o Email")]
         public string Contacto { get; set; }
+
+        [Required(ErrorMessage = "Por favor forneça o Id fo Gerente")]
         public int IdGerente { get; set; }
 
         public virtual Gerente IdGerenteNavigation { get; set; }

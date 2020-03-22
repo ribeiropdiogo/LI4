@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SGR.Models
 {
@@ -12,7 +13,13 @@ namespace SGR.Models
         }
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Por favor forneça o Nome")]
         public string Nome { get; set; }
+
+
+        [DataType(DataType.Currency)]
+        [Required(ErrorMessage = "Por favor forneça o Preço")]
         public decimal Preco { get; set; }
 
         public virtual ICollection<ArtigoInPedido> ArtigoInPedido { get; set; }

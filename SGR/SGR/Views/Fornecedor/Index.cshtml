@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Reservas";
+    ViewData["User"] = "Chuck Norris";
+}
+
+@model IEnumerable<SGR.Models.Reserva>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Reservas</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Reservas</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Data/Hora</th>
+                        <th>Nome Cliente</th>
+                        <th>NIF Cliente</th>
+                        <th>Gerente</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.DataHora)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NomeCliente)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NifCliente)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdGerente)</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Data/Hora</th>
+                        <th>Nome Cliente</th>
+                        <th>NIF Cliente</th>
+                        <th>Gerente</th>
+                        <th>Opções</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</section>
+<!-- /.content -->
+
+@section Scripts
+{
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>$(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

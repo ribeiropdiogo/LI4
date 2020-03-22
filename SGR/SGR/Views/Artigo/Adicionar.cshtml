@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Artigos";
+    ViewData["User"] = "Chuck Norris";
+}
+
+@model SGR.Models.Artigo
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Artigos</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Artigos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!-- Main content -->
+    <section class="content">
+        <div class="card-body">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h5 class="m-0">Adicionar Artigo</h5>
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="card-body">
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+                            </div>
+                            
+                            <button type="submit" value="Adicionar" class="btn btn-primary">Adicionar</button>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+}
+
+@section Scripts
+{
+        <script src="~/lib/datatables/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+        <script>$(function () {
+                $("#example1").DataTable();
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                });
+            });</script>
+    }
