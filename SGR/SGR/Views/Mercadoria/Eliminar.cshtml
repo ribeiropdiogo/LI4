@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Mercadorias";
+    ViewData["User"] = "Chuck Norris";
+}
+
+@model SGR.Models.Mercadoria
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Mercadorias</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Mercadorias</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="card-body">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h5 class="m-0">Confirmação</h5>
+            </div>
+            <div class="card-body">
+
+                <p class="error">@ViewBag.ErrorMessage</p>
+                <div>
+                    <h4>Gerente</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Nome)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Marca)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Marca)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Stock)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Stock)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Observacoes)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Observacoes)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.QuantidadeMinima)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.QuantidadeMinima)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Embalagem)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Embalagem)
+                        </dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" value="Eliminar" class="btn btn-primary">Eliminar</button>
+                    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
+                </div>
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts
+{
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>$(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

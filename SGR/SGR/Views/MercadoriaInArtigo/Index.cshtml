@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Artigos";
+    ViewData["Title"] = "MercadoriaInArtigo";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model IEnumerable<SGR.Models.Artigo>
+@model IEnumerable<SGR.Models.MercadoriaInArtigo>
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Artigos</h1>
+                <h1>MercadoriaInArtigo</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Artigos</li>
+                    <li class="breadcrumb-item active">MercadoriaInArtigo</li>
                 </ol>
             </div>
         </div>
@@ -38,16 +38,16 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Preço</th>
-                        <th>Opções</th>
+                        <th>IdMercadoria</th>
+                        <th>IdArtigo</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdMercadoria)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdArtigo)</td>
                             <td>
                                 <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
                                 <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
@@ -58,8 +58,8 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Nome</th>
-                        <th>Preço</th>
+                        <th>IdMercadoria</th>
+                        <th>IdArtigo</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>
