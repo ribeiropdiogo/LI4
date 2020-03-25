@@ -319,6 +319,52 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link" asp-area="" asp-controller="Fornecedor" asp-action="Index">
+                                <i class="nav-icon fas fa-truck"></i>
+                                <p>
+                                    Fornecedores
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Fornecedor" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar Fornecedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Fornecedor" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver Fornecedors</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a class="nav-link" asp-area="" asp-controller="PrecoMercadoriaFornecedor" asp-action="Index">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    PrecoMercadoriaFornecedor
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="PrecoMercadoriaFornecedor" asp-action="Adicionar">
+                                        <i class="nav-icon fas fa-plus"></i>
+                                        <p>Adicionar PrecoMercadoriaFornecedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="PrecoMercadoriaFornecedor" asp-action="Index">
+                                        <i class="nav-icon fas fa-list"></i>
+                                        <p>Ver PrecoMercadoriaFornecedor</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

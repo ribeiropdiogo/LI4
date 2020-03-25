@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Fornecedores";
+    ViewData["Title"] = "PrecoMercadoriaFornecedor";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Fornecedor
+@model SGR.Models.PrecoMercadoriaFornecedor
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Fornecedores</h1>
+                <h1>PrecoMercadoriaFornecedor</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Fornecedores</li>
+                    <li class="breadcrumb-item active">PrecoMercadoriaFornecedor</li>
                 </ol>
             </div>
         </div>
@@ -36,30 +36,21 @@
         <div class="card-body">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h5 class="m-0">Editar Fornecedor</h5>
+                    <h5 class="m-0">Editar PrecoMercadoriaFornecedor</h5>
                 </div>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
                 <div class="card-body">
                     <form role="form">
-                        <div class="card-body">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Contacto, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Contacto, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Contacto, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.IdGerente, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.IdGerente, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.IdGerente, "", new { @class = "text-danger" })
-                            </div>
-                            <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
-                            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mercadoria, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Mercadoria, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mercadoria, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Fornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Fornecedor, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Fornecedor, "", new { @class = "text-danger" })
                         </div>
                         <!-- /.card-body -->
                     </form>

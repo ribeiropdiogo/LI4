@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Fornecedores";
+    ViewData["Title"] = "PrecoMercadoriaFornecedor";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model IEnumerable<SGR.Models.Fornecedor>
+@model IEnumerable<SGR.Models.PrecoMercadoriaFornecedor>
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Fornecedores</h1>
+                <h1>PrecoMercadoriaFornecedor</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Fornecedores</li>
+                    <li class="breadcrumb-item active">PrecoMercadoriaFornecedor</li>
                 </ol>
             </div>
         </div>
@@ -37,32 +37,29 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Email</th>
-                        <th>Contacto</th>
+                        <th>Fornecedor</th>
+                        <th>Mercadoria</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Contacto)</td>
-                        <td>
-                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Fornecedor)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Mercadoria)</td>
+                            <td>
+                                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                                <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Id</th>
-                        <th>Email</th>
-                        <th>Contacto</th>
+                        <th>Fornecedor</th>
+                        <th>Mercadoria</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>

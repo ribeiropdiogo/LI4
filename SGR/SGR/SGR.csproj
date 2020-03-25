@@ -22,6 +22,7 @@
     <Folder Include="Views\ArtigoInPedido\" />
     <Folder Include="Views\Mercadoria\" />
     <Folder Include="Views\MercadoriaInArtigo\" />
+    <Folder Include="Views\PrecoMercadoriaFornecedor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />

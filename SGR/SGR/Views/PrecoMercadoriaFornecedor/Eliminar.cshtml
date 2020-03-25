@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Fornecedores";
+    ViewData["Title"] = "PrecoMercadoriaFornecedor";
     ViewData["User"] = "Chuck Norris";
 }
 
-@model SGR.Models.Fornecedor
+@model SGR.Models.PrecoMercadoriaFornecedor
 
 @section Styles
 {
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Fornecedores</h1>
+                <h1>PrecoMercadoriaFornecedor</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Fornecedores</li>
+                    <li class="breadcrumb-item active">PrecoMercadoriaFornecedor</li>
                 </ol>
             </div>
         </div>
@@ -33,53 +33,44 @@
     <div class="card-body">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">Detalhes Fornecedor</h5>
+                <h5 class="m-0">Confirmação</h5>
             </div>
             <div class="card-body">
 
                 <p class="error">@ViewBag.ErrorMessage</p>
                 <div>
-                    <h4>Fornecedores</h4>
+                    <h4>Gerente</h4>
                     <hr />
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.Id)
+                            @Html.DisplayNameFor(model => model.Mercadoria)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Id)
+                            @Html.DisplayFor(model => model.Mercadoria)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Email)
+                            @Html.DisplayNameFor(model => model.Fornecedor)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Email)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Contacto)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Contacto)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IdGerente)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.IdGerente)
+                            @Html.DisplayFor(model => model.Fornecedor)
                         </dd>
                     </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" value="Eliminar" class="btn btn-primary">Eliminar</button>
+                    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
+                </div>
+                    }
                 </div>
 
-                <p>
-                    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Voltar", "Index", new {  }, new { @class = "btn btn-primary" })
-                </p>
+
 
             </div>
         </div>
