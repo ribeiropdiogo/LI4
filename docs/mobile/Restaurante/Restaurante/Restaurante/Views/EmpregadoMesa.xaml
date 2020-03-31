@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="DarkSlateGray"
+             x:Class="Restaurante.EmpregadoMesa">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height=".4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Serviço à Mesa" TextColor="LimeGreen" FontSize="35" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <ImageButton Source="lista.png" BackgroundColor="DarkSlateGray" Grid.Row="4" Grid.Column="1" Clicked="BotaoListaPedidos" />
+
+        <ImageButton Source="adicionar.png" BackgroundColor="DarkSlateGray" Grid.Row="4" Grid.Column="2" Clicked="BotaoAdicionar" />
+
+        <ImageButton Source="fechar.png" BackgroundColor="DarkSlateGray" Grid.Row="4" Grid.Column="3" Clicked="BotaoSair" />
+
+    </Grid>
+</ContentPage>
