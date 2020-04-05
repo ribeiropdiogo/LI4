@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurante.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,10 @@ namespace Restaurante
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EmpregadoMesa : ContentPage
     {
-        public EmpregadoMesa()
+        private Funcionario func;
+        public EmpregadoMesa(Funcionario f)
         {
+            this.func = f;
             InitializeComponent();
         }
 

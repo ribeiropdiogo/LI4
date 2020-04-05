@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurante.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,9 +24,23 @@ namespace Restaurante
             this.user = usernameEntry.Text;
             this.password = passwordEntry.Text;
             //if(empregado de mesa)
-                Navigation.PushModalAsync(new EmpregadoMesa());
-            //if(empregado de balcao)
-               // Navigation.PushModalAsync(new EmpregadoBalcao());
+            Funcionario func = Connect.login(user, password);
+            if(func != null)
+            {
+                string cargo;
+                cargo = func.cargo;
+                if (cargo.Equals("Limpa Vidros")){
+                    Navigation.PushModalAsync(new EmpregadoMesa(func));
+                }
+                else
+                {
+                    Navigation.PushModalAsync(new EmpregadoBalcao());
+                }
+            }
+            else
+            {
+                DisplayAlert("Erro.", "Volte a tentar!", "Ok");
+            }
         }
     }
 }
