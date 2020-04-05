@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGR.Controllers
 {
@@ -28,7 +29,7 @@ namespace SGR.Controllers
             return View(await db.Horario.ToListAsync());
         }
 
-
+        [Authorize]
         // GET: Horario/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -44,12 +45,14 @@ namespace SGR.Controllers
             return View(horario);
         }
 
+        [Authorize]
         // GET: Horario/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Horario/Adicionar
         [HttpPost]
         public async Task<IActionResult> Adicionar(Horario horario)
@@ -62,6 +65,7 @@ namespace SGR.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         // GET: Horario/Editar/5
         public ActionResult Editar(int? id)
         {
@@ -77,6 +81,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Horario/Editar/5
         [HttpPost, ActionName("Editar")]
         public async Task<IActionResult> EditarPost(int id, Horario horario)
@@ -96,6 +101,7 @@ namespace SGR.Controllers
             return View(horario);
         }
 
+        [Authorize]
         // GET: Horario/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
@@ -115,6 +121,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Horario/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)

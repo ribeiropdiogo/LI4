@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGR.Controllers
 {
@@ -22,13 +23,13 @@ namespace SGR.Controllers
             db = context;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await db.PrecoMercadoriaFornecedor.ToListAsync());
         }
 
-
+        [Authorize]
         // GET: PrecoMercadoriaFornecedor/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -44,12 +45,14 @@ namespace SGR.Controllers
             return View(a);
         }
 
+        [Authorize]
         // GET: PrecoMercadoriaFornecedor/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
+        [Authorize]
         // POST: PrecoMercadoriaFornecedor/Adicionar
         [HttpPost]
         public async Task<IActionResult> Adicionar(PrecoMercadoriaFornecedor a)
@@ -62,6 +65,7 @@ namespace SGR.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         // GET: PrecoMercadoriaFornecedor/Editar/5
         public ActionResult Editar(int? id)
         {
@@ -77,6 +81,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: PrecoMercadoriaFornecedor/Editar/5
         [HttpPost, ActionName("Editar")]
         public async Task<IActionResult> EditarPost(int id, PrecoMercadoriaFornecedor a)
@@ -96,6 +101,7 @@ namespace SGR.Controllers
             return View(a);
         }
 
+        [Authorize]
         // GET: PrecoMercadoriaFornecedor/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
@@ -115,6 +121,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: PrecoMercadoriaFornecedor/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)

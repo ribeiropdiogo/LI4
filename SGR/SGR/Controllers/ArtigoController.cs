@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGR.Controllers
 {
@@ -22,13 +23,14 @@ namespace SGR.Controllers
             db = context;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await db.Artigo.ToListAsync());
         }
 
 
+        [Authorize]
         // GET: Artigo/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -44,12 +46,14 @@ namespace SGR.Controllers
             return View(a);
         }
 
+        [Authorize]
         // GET: Artigo/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Artigo/Adicionar
         [HttpPost]
         public async Task<IActionResult> Adicionar(Artigo a)
@@ -62,6 +66,7 @@ namespace SGR.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         // GET: Artigo/Editar/5
         public ActionResult Editar(int? id)
         {
@@ -77,6 +82,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Artigo/Editar/5
         [HttpPost, ActionName("Editar")]
         public async Task<IActionResult> EditarPost(int id, Artigo a)
@@ -96,6 +102,7 @@ namespace SGR.Controllers
             return View(a);
         }
 
+        [Authorize]
         // GET: Artigo/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
@@ -115,6 +122,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Artigo/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)

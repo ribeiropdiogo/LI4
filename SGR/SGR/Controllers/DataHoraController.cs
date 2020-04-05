@@ -8,6 +8,7 @@ using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGR.Controllers
 {
@@ -21,13 +22,13 @@ namespace SGR.Controllers
             db = context;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await db.DataHora.ToListAsync());
         }
 
-
+        [Authorize]
         // GET: DataHora/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -43,12 +44,14 @@ namespace SGR.Controllers
             return View(dataHora);
         }
 
+        [Authorize]
         // GET: DataHora/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
+        [Authorize]
         // POST: DataHora/Adicionar
         [HttpPost]
         public async Task<IActionResult> Adicionar(DataHora d)
@@ -61,6 +64,7 @@ namespace SGR.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         // GET: DataHora/Editar/5
         public ActionResult Editar(int? id)
         {
@@ -76,6 +80,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: DataHora/Editar/5
         [HttpPost, ActionName("Editar")]
         public async Task<IActionResult> EditarPost(int id, DataHora d)
@@ -95,6 +100,7 @@ namespace SGR.Controllers
             return View(d);
         }
 
+        [Authorize]
         // GET: DataHora/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
@@ -116,6 +122,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: DataHora/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)

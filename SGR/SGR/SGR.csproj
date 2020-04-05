@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />
+    <Content Remove="Views\Gerente\Index %28copy%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />

@@ -8,6 +8,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGR.Controllers
 {
@@ -21,13 +22,13 @@ namespace SGR.Controllers
             db = context;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await db.Reserva.ToListAsync());
         }
 
-
+        [Authorize]
         // GET: Reserva/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
@@ -43,12 +44,14 @@ namespace SGR.Controllers
             return View(r);
         }
 
+        [Authorize]
         // GET: Reserva/Adicionar
         public ActionResult Adicionar()
         {
             return View();
         }
 
+        [Authorize]
         // POST: Reserva/Adicionar
         [HttpPost]
         public async Task<IActionResult> Adicionar(Reserva reseva)
@@ -61,6 +64,7 @@ namespace SGR.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         // GET: Reserva/Editar/5
         public ActionResult Editar(int? id)
         {
@@ -76,6 +80,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Reserva/Editar/5
         [HttpPost, ActionName("Editar")]
         public async Task<IActionResult> EditarPost(int id, Reserva reserva)
@@ -95,6 +100,7 @@ namespace SGR.Controllers
             return View(reserva);
         }
 
+        [Authorize]
         // GET: Reserva/Eliminar/5
         public ActionResult Eliminar(int? id, bool? saveChangesError = false)
         {
@@ -114,6 +120,7 @@ namespace SGR.Controllers
             return View(f);
         }
 
+        [Authorize]
         // POST: Reserva/Eliminar/5
         [HttpPost, ActionName("Eliminar")]
         public async Task<IActionResult> Eliminar(int id)

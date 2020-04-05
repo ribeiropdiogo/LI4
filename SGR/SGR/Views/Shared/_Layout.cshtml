@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.User.Identity;
+    string e = identity.Claims.FirstOrDefault().Value;
+    ViewData["Email"] = e;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,7 +41,7 @@
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Contact</a>
+                    <a class="nav-link" asp-area="" asp-controller="Gerente" asp-action="Logout">Logout</a>
                 </li>
             </ul>
 
@@ -60,7 +66,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
-                        <a href="#" class="d-block">@ViewData["User"]</a>
+                        <a href="#" class="d-block">@ViewData["Email"]</a>
                     </div>
                 </div>
 
@@ -68,7 +74,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="nav-icon fas fa-home"></i>
