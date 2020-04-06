@@ -232,7 +232,10 @@ namespace SGR.Controllers
                 {
                     return Redirect("/");
                 }
-            }
+
+            } else {
+                return View("LoginError");
+            };
 
             return View();
         }

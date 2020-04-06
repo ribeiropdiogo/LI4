@@ -65,7 +65,6 @@ namespace SGR
 
             app.UseRouting();
 
-
             app.UseAuthentication();
             app.UseAuthorization();
 
