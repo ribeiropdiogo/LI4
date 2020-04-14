@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SGR.Controllers
 {
@@ -25,7 +26,7 @@ namespace SGR.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         { 
-            return View(await db.Funcionario.ToListAsync());
+            return View(await db.Fornecedor.ToListAsync());
         }
 
         [Authorize]
@@ -58,6 +59,11 @@ namespace SGR.Controllers
         {
             if (!ModelState.IsValid)
                 return View(f);
+
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+            Claim claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+
+            f.IdGerente = int.Parse(claim.Value);
 
             db.Add(f);
             await db.SaveChangesAsync();

@@ -42,6 +42,11 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+
+            ViewBag.Mercadorias = db.Mercadoria.Find(a.Mercadoria);
+            ViewBag.Fornecedores = db.Fornecedor.Find(a.Fornecedor);
+
             return View(a);
         }
 
@@ -49,6 +54,8 @@ namespace SGR.Controllers
         // GET: PrecoMercadoriaFornecedor/Adicionar
         public ActionResult Adicionar()
         {
+            ViewBag.Mercadorias = GetMercadorias();
+            ViewBag.Fornecedores = GetFornecedores();
             return View();
         }
 
@@ -74,6 +81,10 @@ namespace SGR.Controllers
                 return RedirectToAction("Index");
             }
             PrecoMercadoriaFornecedor f = db.PrecoMercadoriaFornecedor.Find(id);
+
+            ViewBag.Mercadorias = GetMercadorias();
+            ViewBag.Fornecedores = GetFornecedores();
+
             if (f == null)
             {
                 return RedirectToAction("Index");
@@ -149,6 +160,16 @@ namespace SGR.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IEnumerable<Mercadoria> GetMercadorias()
+        {
+            return db.Mercadoria.ToList();
+        }
+
+        private IEnumerable<Fornecedor> GetFornecedores()
+        {
+            return db.Fornecedor.ToList();
         }
     }
 }

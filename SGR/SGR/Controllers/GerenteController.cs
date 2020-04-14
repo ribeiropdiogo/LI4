@@ -191,6 +191,7 @@ namespace SGR.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, g.Email),
+                    new Claim(ClaimTypes.NameIdentifier, g.Id.ToString()),
                     new Claim(ClaimTypes.Role, "Administrator"),
                 };
 

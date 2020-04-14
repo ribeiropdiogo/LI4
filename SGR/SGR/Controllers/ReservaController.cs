@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SGR.Controllers
 {
@@ -59,6 +60,10 @@ namespace SGR.Controllers
             if (!ModelState.IsValid)
                 return View(reseva);
 
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+            Claim claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+
+            reseva.IdGerente = int.Parse(claim.Value);
             db.Add(reseva);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

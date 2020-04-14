@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "PrecoMercadoriaFornecedor";
+    ViewData["Title"] = "Preço";
     ViewData["User"] = "Chuck Norris";
 }
 
@@ -16,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>PrecoMercadoriaFornecedor</h1>
+                <h1>Preço</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">PrecoMercadoriaFornecedor</li>
+                    <li class="breadcrumb-item active">Preço</li>
                 </ol>
             </div>
         </div>
@@ -33,13 +33,13 @@
     <div class="card-body">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">Detalhes PrecoMercadoriaFornecedor</h5>
+                <h5 class="m-0">Detalhes Preço</h5>
             </div>
             <div class="card-body">
 
                 <p class="error">@ViewBag.ErrorMessage</p>
                 <div>
-                    <h4>PrecoMercadoriaFornecedor</h4>
+                    <h4>Preço</h4>
                     <hr />
                     <dl class="dl-horizontal">
                         <dt>
@@ -47,7 +47,7 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Mercadoria)
+                            @ViewBag.Mercadorias.Nome
                         </dd>
 
                         <dt>
@@ -55,7 +55,15 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Fornecedor)
+                            @ViewBag.Fornecedores.Email
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Preco)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Preco)
                         </dd>
                     </dl>
                 </div>
