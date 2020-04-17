@@ -145,6 +145,13 @@ namespace SGR.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public ActionResult AdicionarArtigo(int? id)
+        {
+            TempData["NPedido"] = id;
+            return RedirectToAction("Adicionar", "ArtigoInPedido");
+        }
+
     }
 }
 

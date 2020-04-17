@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace SGR.Controllers
 {
@@ -25,6 +26,7 @@ namespace SGR.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Horarios = GetHorarios();
             return View(await db.DataHora.ToListAsync());
         }
 
@@ -41,6 +43,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Horarios = db.Horario.Find(dataHora.IdHorario);
             return View(dataHora);
         }
 
@@ -48,6 +51,7 @@ namespace SGR.Controllers
         // GET: DataHora/Adicionar
         public ActionResult Adicionar()
         {
+            ViewBag.Horarios = GetHorarios();
             return View();
         }
 
@@ -77,6 +81,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Horarios = GetHorarios();
             return View(f);
         }
 
@@ -118,7 +123,7 @@ namespace SGR.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Horarios = db.Horario.Find(f.IdHorario);
             return View(f);
         }
 
@@ -150,6 +155,11 @@ namespace SGR.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IEnumerable<Horario> GetHorarios()
+        {
+            return db.Horario.ToList();
         }
     }
 }

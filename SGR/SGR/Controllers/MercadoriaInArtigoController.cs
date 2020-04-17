@@ -26,6 +26,8 @@ namespace SGR.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Artigos = GetArtigos();
+            ViewBag.Mercadorias = GetMercadorias();
             return View(await db.MercadoriaInArtigo.ToListAsync());
         }
 
@@ -42,6 +44,10 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Artigos = db.Artigo.Find(a.IdArtigo);
+            ViewBag.Mercadorias = db.Mercadoria.Find(a.IdMercadoria);
+
             return View(a);
         }
 
@@ -49,6 +55,8 @@ namespace SGR.Controllers
         // GET: MercadoriaInArtigo/Adicionar
         public ActionResult Adicionar()
         {
+            ViewBag.Artigos = GetArtigos();
+            ViewBag.Mercadorias = GetMercadorias();
             return View();
         }
 
@@ -78,6 +86,8 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Artigos = GetArtigos();
+            ViewBag.Mercadorias = GetMercadorias();
             return View(f);
         }
 
@@ -149,6 +159,16 @@ namespace SGR.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IEnumerable<Mercadoria> GetMercadorias()
+        {
+            return db.Mercadoria.ToList().OrderBy(c => c.Nome);
+        }
+
+        private IEnumerable<Artigo> GetArtigos()
+        {
+            return db.Artigo.ToList().OrderBy(c => c.Nome);
         }
     }
 }

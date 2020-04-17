@@ -8,7 +8,7 @@ namespace SGR.Models
     {
         public int Id { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Por favor forneça a data e hora")]
         [Display(Name = "Data e Hora")]

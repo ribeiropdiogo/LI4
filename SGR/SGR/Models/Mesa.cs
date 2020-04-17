@@ -13,8 +13,11 @@ namespace SGR.Models
 
         public int Id { get; set; }
 
+        [Display(Name = "Ocupação")]
         [Required(ErrorMessage = "Por favor forneça a Ocupação")]
-        public string Ocupacao { get; set; }
+        public int Ocupacao { get; set; }
+
+        public bool Reservada { get; set; }
 
         public virtual ICollection<Pedido> Pedido { get; set; }
     }

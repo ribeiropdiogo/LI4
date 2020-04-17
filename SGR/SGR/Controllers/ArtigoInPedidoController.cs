@@ -23,11 +23,23 @@ namespace SGR.Controllers
             db = context;
         }
 
+        
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Artigos = GetArtigos();
             return View(await db.ArtigoInPedido.ToListAsync());
         }
+        
+        
+        [Authorize]
+        public async Task<ActionResult> List(int? id)
+        {
+            ViewBag.Artigos = GetArtigos();
+            TempData["NPedido"] = id;
+            return View(await db.ArtigoInPedido.Where(a => a.IdPedido == id).ToListAsync());
+        }
+        
 
         [Authorize]
         // GET: ArtigoInPedido/Detalhes/5
@@ -42,6 +54,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Artigos = db.Artigo.Find(a.IdArtigo);
             return View(a);
         }
 
@@ -49,6 +62,7 @@ namespace SGR.Controllers
         // GET: ArtigoInPedido/Adicionar
         public ActionResult Adicionar()
         {
+            ViewBag.Artigos = GetArtigos();
             return View();
         }
 
@@ -59,10 +73,11 @@ namespace SGR.Controllers
         {
             if (!ModelState.IsValid)
                 return View(a);
-
+            ViewBag.NPedido = TempData["NPedido"];
+            a.IdPedido = ViewBag.NPedido;
             db.Add(a);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { id = TempData["NPedido"] });
         }
 
         [Authorize]
@@ -78,6 +93,7 @@ namespace SGR.Controllers
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Artigos = GetArtigos();
             return View(f);
         }
 
@@ -90,7 +106,8 @@ namespace SGR.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.NPedido = TempData["NPedido"];
+            a.IdPedido = ViewBag.NPedido;
             if (ModelState.IsValid)
             {
                 db.Update(a);
@@ -118,6 +135,7 @@ namespace SGR.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Artigos = db.Artigo.Find(f.IdArtigo);
             return View(f);
         }
 
@@ -142,13 +160,18 @@ namespace SGR.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 return RedirectToAction("Eliminar", new { id = id, saveChangesError = true });
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("List", new { id = TempData["NPedido"] });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IEnumerable<Artigo> GetArtigos()
+        {
+            return db.Artigo.ToList().OrderBy(c => c.Nome);
         }
     }
 }

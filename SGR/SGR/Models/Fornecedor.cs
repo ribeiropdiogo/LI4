@@ -24,6 +24,9 @@ namespace SGR.Models
         [Required(ErrorMessage = "Por favor forneça o Id fo Gerente")]
         public int IdGerente { get; set; }
 
+        [Required(ErrorMessage = "Por favor forneça o Nome")]
+        public string Nome { get; set; }
+
         public virtual Gerente IdGerenteNavigation { get; set; }
         public virtual ICollection<PrecoMercadoriaFornecedor> PrecoMercadoriaFornecedor { get; set; }
     }

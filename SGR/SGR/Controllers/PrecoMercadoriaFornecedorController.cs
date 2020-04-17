@@ -26,6 +26,8 @@ namespace SGR.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Mercadorias = GetMercadorias();
+            ViewBag.Fornecedores = GetFornecedores();
             return View(await db.PrecoMercadoriaFornecedor.ToListAsync());
         }
 
