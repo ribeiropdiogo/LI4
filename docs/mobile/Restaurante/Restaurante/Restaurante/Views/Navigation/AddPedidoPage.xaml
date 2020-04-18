@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Restaurante.Views.Navigation.AddPedidoPage"
+             xmlns:viewModel="clr-namespace:Restaurante.ViewModels.Navigation"
+             BackgroundColor="DarkSlateGray"
+             NavigationPage.HasNavigationBar="False">
+
+    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BorderBackgroundColor2">#20FFFFFF</Color>
+            <x:String x:Key="Back">&#xe709;</x:String>
+            <x:String x:Key="Add">&#xe730;</x:String>
+            <x:String x:Key="ArrowRight">&#xe728;</x:String>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"
+                Padding="16,8"
+                Grid.Row="0"
+                HeightRequest="64"
+                BackgroundColor="{StaticResource BorderBackgroundColor2}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <StackLayout  x:Name="Title"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <Button
+                        x:Name="backButton"
+                        TextColor="{DynamicResource Gray-White}" 
+                        BackgroundColor="Transparent" 
+                        FontFamily="{StaticResource FontIcons}" 
+                        FontSize="18"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        HeightRequest="40" 
+                        WidthRequest="40" 
+                        Clicked="BackClicked"
+                        CornerRadius="4"
+                        Text="{StaticResource Back}" />
+
+                    <!--  Artigos page Title  -->
+                    <Label Margin="16,0"
+                        HeightRequest="24"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        LineHeight="1.25"
+                        Text="Artigos"
+                        TextColor="{DynamicResource Gray-White}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+
+                <!--  Done Button  -->
+                <Button 
+                    x:Name="DoneButton"
+                    TextColor="{DynamicResource Gray-White}"
+                    FontSize="18" 
+                    WidthRequest="38" 
+                    HeightRequest="38" 
+                    CornerRadius="4" 
+                    Padding="0" 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Fill" 
+                    BackgroundColor="Transparent" 
+                    BorderWidth="0" 
+                    FontFamily="{StaticResource FontIcons}" 
+                    IsVisible="True"
+                    Clicked="DoneButton_Clicked"
+                    Text="{StaticResource ArrowRight}" />
+            </StackLayout>
+
+            <StackLayout  Grid.Row="1" Spacing="0">
+                <!-- Seperator -->
+                <SearchBar x:Name="MainSearchBar"
+                           TextChanged="MainSearchBar_TextChanged" />
+                <ListView 
+                    x:Name="ViewArtigos"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Grid ColumnSpacing="0" RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" HorizontalOptions="FillAndExpand" 
+                                                     VerticalOptions="FillAndExpand" Spacing="0" >
+                                            <!--  Nome do artigo  -->
+                                            <Label Margin="16,13,0,0"
+                                                HeightRequest="24"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="16"
+                                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                Text="{Binding nome}"
+                                                TextColor="LimeGreen" />
+
+                                            <!--  Preço do artigo  -->
+                                            <Label  Margin="16,0,0,12"
+                                                HeightRequest="21"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="14"
+                                                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                                                Text="{Binding preco}"
+                                                TextColor="{DynamicResource Gray-White}" />
+                                        </StackLayout>
+
+                                        <!-- Menu button -->
+                                        <Button
+                                            x:Name="MenuButton"
+                                            TextColor="{DynamicResource Gray-White}" 
+                                            FontSize="18" 
+                                            WidthRequest="38" 
+                                            HeightRequest="38" 
+                                            CornerRadius="4" 
+                                            VerticalOptions="Center" 
+                                            HorizontalOptions="End" 
+                                            BackgroundColor="Transparent" 
+                                            Clicked="MenuClicked"
+                                            FontFamily="{StaticResource FontIcons}"  
+                                            Margin="16,0"
+                                            Grid.Column="1"
+                                            Text="{StaticResource Add}" />
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
