@@ -43,10 +43,15 @@
                 <div class="card-body">
                     <form role="form">
                         <div class="card-body">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
                             <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
                             @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
                         </div>
-                        <!-- /.card-body -->
+                    <!-- /.card-body -->
                     </form>
                 </div>
             </div>

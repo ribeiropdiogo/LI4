@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Restaurante.Views.Navigation.PedidosFeitosPage"
+             BackgroundColor="DarkSlateGray">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BorderBackgroundColor2">#20FFFFFF</Color>
+            <x:String x:Key="Back">&#xe709;</x:String>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"
+                Padding="16,8"
+                Grid.Row="0"
+                HeightRequest="64"
+                BackgroundColor="{StaticResource BorderBackgroundColor2}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <StackLayout  x:Name="Title"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <Button
+                        x:Name="backButton"
+                        TextColor="{DynamicResource Gray-White}" 
+                        BackgroundColor="Transparent" 
+                        FontFamily="{StaticResource FontIcons}" 
+                        FontSize="18"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        HeightRequest="40" 
+                        WidthRequest="40" 
+                        Clicked="BackClicked"
+                        CornerRadius="4"
+                        Text="{StaticResource Back}" />
+
+                    <!--  Pedidos page Title  -->
+                    <Label Margin="16,0"
+                        HeightRequest="24"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        LineHeight="1.25"
+                        Text="Pedidos"
+                        TextColor="{DynamicResource Gray-White}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout  Grid.Row="1" Spacing="0">
+                <ListView 
+                    x:Name="ViewPedidos"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Grid ColumnSpacing="0" RowSpacing="0">
+                                        <StackLayout Grid.Column="0" HorizontalOptions="FillAndExpand" 
+                                                     VerticalOptions="FillAndExpand" Spacing="0" >
+                                            <!--  Nome do artigo  -->
+                                            <Label Margin="16,13,0,0"
+                                                HeightRequest="30"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="25"
+                                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                Text="Pedido"
+                                                TextColor="LimeGreen" />
+
+                                            <!--  Preço do artigo  -->
+                                            <Label  Margin="16,0,0,12"
+                                                HeightRequest="25"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="20"
+                                                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                                                Text="{Binding numero}"
+                                                TextColor="{DynamicResource Gray-White}" />
+                                        </StackLayout>
+
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

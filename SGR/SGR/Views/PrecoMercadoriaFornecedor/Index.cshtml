@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Preço";
+    ViewData["Title"] = "Preços";
     ViewData["User"] = "Chuck Norris";
 }
 
@@ -28,6 +28,25 @@
     </div>
 </section>
 
+@functions {
+    public string FindFornecedor(int id)
+    {
+        return (from item in ViewBag.Fornecedores as IEnumerable<Fornecedor>
+                where item.Id == id
+                select item.Email).FirstOrDefault();
+    }
+}
+
+@functions {
+    public string FindMercadoria(int id)
+    {
+        return (from item in ViewBag.Mercadorias as IEnumerable<Mercadoria>
+                where item.Id == id
+                select item.Nome).FirstOrDefault();
+    }
+}
+
+
 <!-- Main content -->
 <section class="content">
 
@@ -39,6 +58,7 @@
                     <tr>
                         <th>Fornecedor</th>
                         <th>Mercadoria</th>
+                        <th>Preço</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -46,8 +66,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Fornecedor)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Mercadoria)</td>
+                            <td>@FindFornecedor(item.Fornecedor)</td>
+                            <td>@FindMercadoria(item.Mercadoria)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Preco)</td>
                             <td>
                                 <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
                                 <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
@@ -60,6 +81,7 @@
                     <tr>
                         <th>Fornecedor</th>
                         <th>Mercadoria</th>
+                        <th>Preço</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>
@@ -75,7 +97,8 @@
     <script src="~/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-    <script>$(function () {
+    <script>
+        $(function () {
             $("#example1").DataTable();
             $('#example2').DataTable({
                 "paging": true,

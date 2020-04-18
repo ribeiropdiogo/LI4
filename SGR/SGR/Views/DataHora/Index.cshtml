@@ -28,6 +28,16 @@
     </div>
 </section>
 
+@functions {
+    public string FindHorario(int id)
+    {
+        return (from item in ViewBag.Horarios as IEnumerable<Horario>
+                where item.Id == id
+                select item.Nome).FirstOrDefault();
+    }
+}
+
+
 <!-- Main content -->
 <section class="content">
 
@@ -37,7 +47,8 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Data Hora</th>
+                        <th>Início</th>
+                        <th>Fim</th>
                         <th>Id Horario</th>
                         <th>Opções</th>
                     </tr>
@@ -45,20 +56,22 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.DataHora1)</td>
-                        <td>@Html.DisplayFor(modelItem => item.IdHorario)</td>
-                        <td>
-                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Inicio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Fim)</td>
+                            <td>@FindHorario(item.IdHorario)</td>
+                            <td>
+                                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                                <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Data Hora</th>
+                        <th>Início</th>
+                        <th>Fim</th>
                         <th>Id Horário</th>
                         <th>Opções</th>
                     </tr>
@@ -74,7 +87,8 @@
     <script src="~/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-    <script>$(function () {
+    <script>
+    $(function () {
             $("#example1").DataTable();
             $('#example2').DataTable({
                 "paging": true,

@@ -14,6 +14,7 @@ namespace Restaurante.Models
         public int mesa { get; set; }
         public virtual Funcionario IdFuncionarioNavigation { get; set; }
         public virtual Mesa MesaNavigation { get; set; }
+        public virtual ICollection<ArtigoInPedido> ArtigoInPedido { get; set; }
         public Pedido(int id, DateTime dataHora, int numero, string estado, int idFuncionario, int mesa)
         {
             this.id = id;
@@ -23,6 +24,5 @@ namespace Restaurante.Models
             this.idFuncionario = idFuncionario;
             this.mesa = mesa;
         }
-
     }
 }

@@ -28,6 +28,17 @@
     </div>
 </section>
 
+@{
+    List<SelectListItem> newList = new List<SelectListItem>();
+
+    newList.Add(new SelectListItem() { Value = "Pago", Text = "Pago" });
+    newList.Add(new SelectListItem() { Value = "Por Pagar", Text = "Por Pagar" });
+    newList.Add(new SelectListItem() { Value = "Por Servir", Text = "Por Servir" });
+
+    var selectList = new SelectList(newList, "Value", "Text");
+}
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -55,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.Estado, selectList, "", new { @class = "custom-select" })
                                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
@@ -82,18 +93,19 @@
 
 @section Scripts
 {
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-        <script>$(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });</script>
-    }
+    <script>
+    $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

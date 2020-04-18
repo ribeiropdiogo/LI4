@@ -19,7 +19,6 @@
     <Folder Include="Views\Mesa\" />
     <Folder Include="Views\Pedido\" />
     <Folder Include="Views\Artigo\" />
-    <Folder Include="Views\ArtigoInPedido\" />
     <Folder Include="Views\Mercadoria\" />
     <Folder Include="Views\MercadoriaInArtigo\" />
     <Folder Include="Views\PrecoMercadoriaFornecedor\" />

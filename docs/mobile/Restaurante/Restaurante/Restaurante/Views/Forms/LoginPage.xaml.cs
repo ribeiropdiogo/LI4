@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Restaurante
+namespace Restaurante.Views.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaPedidos : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public ListaPedidos()
+        public LoginPage()
         {
             InitializeComponent();
         }

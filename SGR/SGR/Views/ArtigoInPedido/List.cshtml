@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Conteúdo Pedido";
+    ViewData["User"] = "Chuck Norris";
+}
+
+@model IEnumerable<SGR.Models.ArtigoInPedido>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Conteúdo Pedido</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Pedido" asp-action="Index">Pedidos</a></li>
+                    <li class="breadcrumb-item active">Conteúdo Pedido</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+@functions {
+    public string FindArtigo(int id)
+    {
+        return (from item in ViewBag.Artigos as IEnumerable<Artigo>
+                where item.Id == id
+                select item.Nome).FirstOrDefault();
+    }
+}
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Artigo</th>
+                        <th>Quantidade</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@FindArtigo(item.IdArtigo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+                            <td>
+                                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                                <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Artigo</th>
+                        <th>Quantidade</th>
+                        <th>Opções</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</section>
+<!-- /.content -->
+
+@section Scripts
+{
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+    <script>
+    $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

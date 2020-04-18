@@ -35,6 +35,8 @@ namespace SGR.Data
         {
             modelBuilder.Entity<Artigo>(entity =>
             {
+                entity.ToTable("artigo");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -42,17 +44,19 @@ namespace SGR.Data
                 entity.Property(e => e.Nome)
                     .IsRequired()
                     .HasColumnName("nome")
-                    .HasColumnType("varchar(32)")
+                    .HasColumnType("varchar(50)")
                     .HasCharSet("utf8")
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Preco)
                     .HasColumnName("preco")
-                    .HasColumnType("decimal(8,0)");
+                    .HasColumnType("decimal(8,2)");
             });
 
             modelBuilder.Entity<ArtigoInPedido>(entity =>
             {
+                entity.ToTable("artigoinpedido");
+
                 entity.HasIndex(e => e.IdArtigo)
                     .HasName("fk2_pedidos_idx");
 
@@ -71,6 +75,10 @@ namespace SGR.Data
                     .HasColumnName("idPedido")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Quantidade)
+                    .HasColumnName("quantidade")
+                    .HasColumnType("int(11)");
+
                 entity.HasOne(d => d.IdArtigoNavigation)
                     .WithMany(p => p.ArtigoInPedido)
                     .HasForeignKey(d => d.IdArtigo)
@@ -86,6 +94,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<DataHora>(entity =>
             {
+                entity.ToTable("datahora");
+
                 entity.HasIndex(e => e.IdHorario)
                     .HasName("fk_datahora_1");
 
@@ -93,13 +103,17 @@ namespace SGR.Data
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.DataHora1)
-                    .HasColumnName("dataHora")
+                entity.Property(e => e.Fim)
+                    .HasColumnName("fim")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.IdHorario)
                     .HasColumnName("idHorario")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Inicio)
+                    .HasColumnName("inicio")
+                    .HasColumnType("datetime");
 
                 entity.HasOne(d => d.IdHorarioNavigation)
                     .WithMany(p => p.DataHora)
@@ -110,6 +124,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<Fornecedor>(entity =>
             {
+                entity.ToTable("fornecedor");
+
                 entity.HasIndex(e => e.IdGerente)
                     .HasName("gerente_idx");
 
@@ -135,6 +151,13 @@ namespace SGR.Data
                     .HasColumnName("idGerente")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Nome)
+                    .IsRequired()
+                    .HasColumnName("nome")
+                    .HasColumnType("varchar(45)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
                 entity.HasOne(d => d.IdGerenteNavigation)
                     .WithMany(p => p.Fornecedor)
                     .HasForeignKey(d => d.IdGerente)
@@ -144,6 +167,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<Funcionario>(entity =>
             {
+                entity.ToTable("funcionario");
+
                 entity.HasIndex(e => e.IdGerente)
                     .HasName("gerente_idx");
 
@@ -210,12 +235,13 @@ namespace SGR.Data
                 entity.HasOne(d => d.IdHorarioNavigation)
                     .WithMany(p => p.Funcionario)
                     .HasForeignKey(d => d.IdHorario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk1");
             });
 
             modelBuilder.Entity<Gerente>(entity =>
             {
+                entity.ToTable("gerente");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -237,13 +263,23 @@ namespace SGR.Data
 
             modelBuilder.Entity<Horario>(entity =>
             {
+                entity.ToTable("horario");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Nome)
+                    .IsRequired()
+                    .HasColumnType("varchar(100)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Mercadoria>(entity =>
             {
+                entity.ToTable("mercadoria");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -256,8 +292,11 @@ namespace SGR.Data
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Marca)
+                    .IsRequired()
                     .HasColumnName("marca")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("varchar(50)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Nome)
                     .IsRequired()
@@ -267,7 +306,6 @@ namespace SGR.Data
                     .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Observacoes)
-                    .IsRequired()
                     .HasColumnName("observacoes")
                     .HasColumnType("varchar(128)")
                     .HasCharSet("utf8")
@@ -284,6 +322,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<MercadoriaInArtigo>(entity =>
             {
+                entity.ToTable("mercadoriainartigo");
+
                 entity.HasIndex(e => e.IdArtigo)
                     .HasName("nomeArtigo_idx");
 
@@ -317,20 +357,25 @@ namespace SGR.Data
 
             modelBuilder.Entity<Mesa>(entity =>
             {
+                entity.ToTable("mesa");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Ocupacao)
-                    .IsRequired()
                     .HasColumnName("ocupacao")
-                    .HasColumnType("varchar(16)")
-                    .HasCharSet("utf8")
-                    .HasCollation("utf8_general_ci");
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Reservada)
+                    .HasColumnName("reservada")
+                    .HasColumnType("tinyint(4)");
             });
 
             modelBuilder.Entity<Pedido>(entity =>
             {
+                entity.ToTable("pedido");
+
                 entity.HasIndex(e => e.IdFuncionario)
                     .HasName("fk1_pedido_idx");
 
@@ -379,6 +424,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<PrecoMercadoriaFornecedor>(entity =>
             {
+                entity.ToTable("precomercadoriafornecedor");
+
                 entity.HasIndex(e => e.Fornecedor)
                     .HasName("fornecedor_idx");
 
@@ -399,7 +446,7 @@ namespace SGR.Data
 
                 entity.Property(e => e.Preco)
                     .HasColumnName("preco")
-                    .HasColumnType("decimal(8,0)");
+                    .HasColumnType("decimal(8,2)");
 
                 entity.HasOne(d => d.FornecedorNavigation)
                     .WithMany(p => p.PrecoMercadoriaFornecedor)
@@ -416,6 +463,8 @@ namespace SGR.Data
 
             modelBuilder.Entity<Reserva>(entity =>
             {
+                entity.ToTable("reserva");
+
                 entity.HasIndex(e => e.IdGerente)
                     .HasName("gerente_idx");
 
@@ -452,7 +501,7 @@ namespace SGR.Data
                     .HasConstraintName("fk1_r");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+        OnModelCreatingPartial(modelBuilder);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {

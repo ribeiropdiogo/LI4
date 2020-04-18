@@ -72,6 +72,8 @@
                             @Html.EditorFor(model => model.Embalagem, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Embalagem, "", new { @class = "text-danger" })
                         </div>
+                        <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+                        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
                         <!-- /.card-body -->
                     </form>
                 </div>

@@ -11,12 +11,18 @@ namespace SGR.Models
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Por favor forneça a data e hora")]
-        [Display(Name = "Data e Hora")]
-        public DateTime DataHora1 { get; set; }
+        [Display(Name = "Data e Hora Início")]
+        public DateTime Inicio { get; set; }
 
         [Required(ErrorMessage = "Por favor forneça o Horário")]
         [Display(Name = "Horário")]
         public int IdHorario { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Por favor forneça a data e hora")]
+        [Display(Name = "Data e Hora Fim")]
+        public DateTime Fim { get; set; }
 
         public virtual Horario IdHorarioNavigation { get; set; }
     }

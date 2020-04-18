@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "ArtigoInPedido";
+    ViewData["Title"] = "Conteúdo Pedido";
     ViewData["User"] = "Chuck Norris";
 }
 
@@ -10,18 +10,31 @@
     <link rel="stylesheet" href="~/lib/datatables-bs4/css/dataTables.bootstrap4.css">
 }
 
+@{
+    List<SelectListItem> newList = new List<SelectListItem>();
+
+    foreach (Artigo m in ViewBag.Artigos)
+    {
+        SelectListItem selListItem = new SelectListItem() { Value = m.Id.ToString(), Text = m.Nome };
+        newList.Add(selListItem);
+    }
+
+    var selectList = new SelectList(newList, "Value", "Text");
+}
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>ArtigoInPedido</h1>
+                <h1>Conteúdo Pedido</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">ArtigoInPedido</li>
+                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Pedido" asp-action="Index">Pedidos</a></li>
+                    <li class="breadcrumb-item active">Conteúdo Pedido</li>
                 </ol>
             </div>
         </div>
@@ -36,22 +49,24 @@
         <div class="card-body">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h5 class="m-0">Editar ArtigoInPedido</h5>
+                    <h5 class="m-0">Editar Conteúdo Pedido</h5>
                 </div>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
                 <div class="card-body">
                     <form role="form">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.IdPedido, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.IdPedido, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.IdPedido, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
                             @Html.LabelFor(model => model.IdArtigo, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.IdArtigo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.IdArtigo, selectList, "", new { @class = "custom-select" })
                             @Html.ValidationMessageFor(model => model.IdArtigo, "", new { @class = "text-danger" })
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+                        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
                         <!-- /.card-body -->
                     </form>
                 </div>
@@ -63,18 +78,19 @@
 
 @section Scripts
 {
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-        <script>$(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });</script>
-    }
+    <script>
+    $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

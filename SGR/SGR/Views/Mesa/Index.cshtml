@@ -39,6 +39,7 @@
                     <tr>
                         <th>Número</th>
                         <th>Ocupação</th>
+                        <th>Reservada</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -48,6 +49,7 @@
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Ocupacao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Reservada)</td>
                         <td>
                             <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
                             <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |

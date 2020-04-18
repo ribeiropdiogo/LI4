@@ -36,6 +36,7 @@ namespace SGR.Models
         [Required(ErrorMessage = "Por favor forneça o cargo")]
         public string Cargo { get; set; }
 
+        [Display(Name = "Horário")]
         [Required(ErrorMessage = "Por favor forneça o Id do horário")]
         public int IdHorario { get; set; }
 

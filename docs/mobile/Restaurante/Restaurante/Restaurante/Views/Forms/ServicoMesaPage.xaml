@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="clr-namespace:Restaurante.ViewModels.Forms"
+             mc:Ignorable="d"
+             x:Class="Restaurante.Views.Forms.ServicoMesaPage"
+             BackgroundColor="DarkSlateGray">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BorderBackgroundColor2">#20FFFFFF</Color>
+            <x:String x:Key="Back">&#xe709;</x:String>
+            <x:String x:Key="EditIcon">&#xe727;</x:String>
+            <x:String x:Key="FileExplorer">&#xe74a;</x:String>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="Center">
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+
+            <StackLayout
+                Margin="20,0,20,0"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="{OnPlatform Default='-1',
+                                          UWP='350'}">
+
+                <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Label to display the title of this page  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
+                        Text="Serviço à Mesa"
+                        TextColor="LimeGreen" />
+
+                    <!--  Label to display the description of this page  -->
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,8"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalTextAlignment="Center"
+                        Text="O que pretende fazer?"
+                        TextColor="DarkGray" />
+
+                    <StackLayout x:Name="TitleView"
+                        Margin="100,0,100,0"
+                        Padding="16,8"
+                        Grid.Row="2"
+                        HeightRequest="40"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="0">
+
+                        <StackLayout  x:Name="Title"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            Orientation="Horizontal"
+                            Spacing="10">
+
+                            <!--  Lista de Pedidos command  -->
+                            <Button
+                                x:Name="albumsButton"
+                                TextColor="{DynamicResource Gray-White}" 
+                                BackgroundColor="{StaticResource BorderBackgroundColor2}"
+                                FontFamily="{StaticResource FontIcons}" 
+                                FontSize="18"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center" 
+                                Clicked="albumsButton_Clicked"
+                                HeightRequest="40" 
+                                WidthRequest="40" 
+                                CornerRadius="20"
+                                Text="{StaticResource FileExplorer}" />
+
+                            <!--  Add Pedido command  -->
+                            <Button
+                                x:Name="addButton"
+                                TextColor="{DynamicResource Gray-White}" 
+                                BackgroundColor="{StaticResource BorderBackgroundColor2}"
+                                FontFamily="{StaticResource FontIcons}" 
+                                FontSize="18"
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center" 
+                                HeightRequest="40" 
+                                WidthRequest="40" 
+                                CornerRadius="20"
+                                Clicked="AddPedido_Clicked"
+                                Text="{StaticResource EditIcon}" />
+                        </StackLayout>
+
+                        <!--  Back Button  -->
+                        <Button 
+                            x:Name="backButton"
+                            TextColor="{DynamicResource Gray-White}"
+                            FontSize="18" 
+                            CornerRadius="20" 
+                            Padding="0" 
+                            WidthRequest="38"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Fill" 
+                            BackgroundColor="{StaticResource BorderBackgroundColor2}" 
+                            BorderWidth="0" 
+                            FontFamily="{StaticResource FontIcons}" 
+                            Clicked="backButton_Clicked"
+                            IsVisible="True"
+                            Text="{StaticResource Back}" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

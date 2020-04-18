@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Restaurante.Models
 {
@@ -31,7 +28,19 @@ namespace Restaurante.Models
             this.cargo = cargo;
             this.idHorario = idHorario;
             this.idGerente = idGerente;
-            Pedidos = new HashSet<Pedido>();
+        }
+
+        public Funcionario(Funcionario f)
+        {
+            this.id = f.id;
+            this.email = f.email;
+            this.password = f.password;
+            this.dataNascimento = f.dataNascimento;
+            this.morada = f.morada;
+            this.nome = f.nome;
+            this.cargo = f.cargo;
+            this.idHorario = f.idHorario;
+            this.idGerente = f.idGerente;
         }
 
         public static Funcionario Clone<Funcionario>(Funcionario source)
