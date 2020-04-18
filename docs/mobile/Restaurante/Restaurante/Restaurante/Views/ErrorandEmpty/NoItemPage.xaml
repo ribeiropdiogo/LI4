@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Restaurante.Views.ErrorAndEmpty.NoItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:svg="clr-namespace:Restaurante.Controls"
+    xmlns:viewModel="clr-namespace:Restaurante.ViewModels.ErrorAndEmpty"
+    BackgroundColor="DarkSlateGray"
+    NavigationPage.HasNavigationBar="False">
+
+    <!--  Binding context for NoItem page  -->
+    <ContentPage.BindingContext>
+        <viewModel:NoItemPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BorderBackgroundColor2">#20FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid BackgroundColor="DarkSlateGray">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <StackLayout
+                BackgroundColor="Transparent"
+                Spacing="0"
+                VerticalOptions="Center">
+
+                <!--  Display the svg illustration image  -->
+                <svg:SVGImage 
+                    x:Name="ErrorImage"
+                    Margin="{x:OnIdiom Phone='0,0,0,0',
+                                       Desktop='0',
+                                       Tablet='0'}"
+                    HeightRequest="300"
+                    Source = "{Binding ImagePath}"
+                    VerticalOptions="Center"
+                    WidthRequest="{x:OnIdiom Phone=200,
+                                             Desktop=300,
+                                             Tablet=300}" />
+
+                <!--  Label to display header  -->
+                <Label
+                    Margin="0,32,0,8"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Text="Mesa inválida"
+                    TextColor="LimeGreen" />
+
+                <!--  Label to display content  -->
+                <Label
+                    Margin="8,0,8,0"
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Text="A mesa inserida está ocupada ou não existe"
+                    TextColor="DarkGray" />
+            </StackLayout>
+
+            <!--  Try again button  -->
+            <Button
+                Margin="20,0,20,5"
+                BackgroundColor="{StaticResource BorderBackgroundColor2}"
+                FontSize="18"
+                CornerRadius="22"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="1"
+                Clicked="DoneButton_Clicked"
+                Text="VOLTE A TENTAR"
+                TextColor="{DynamicResource Gray-White}" />
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>
