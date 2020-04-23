@@ -12,6 +12,9 @@ using SGR.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace SGR
 {
@@ -30,9 +33,9 @@ namespace SGR
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SGRContext>(options =>
-            options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SGRContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
+       
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Sets the default scheme to cookies
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
@@ -56,12 +59,13 @@ namespace SGR
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
 
             app.UseRouting();
 

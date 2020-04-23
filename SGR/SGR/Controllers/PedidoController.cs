@@ -30,6 +30,13 @@ namespace SGR.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> Hoje()
+        {
+            DateTime hoje = DateTime.Today;
+            return View(await db.Pedido.Where(p => p.DataHora.Year.Equals(hoje.Year) && p.DataHora.Month.Equals(hoje.Month) && p.DataHora.Day.Equals(hoje.Day)).ToListAsync());
+        }
+
+        [Authorize]
         // GET: Pedido/Detalhes/5
         public ActionResult Detalhes(int? id)
         {
