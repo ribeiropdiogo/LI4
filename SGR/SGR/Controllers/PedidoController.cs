@@ -159,6 +159,17 @@ namespace SGR.Controllers
             return RedirectToAction("Adicionar", "ArtigoInPedido");
         }
 
+        public double totalPedido(int pedido) {
+            double total = 0;
+            ArtigoInPedido[] artigos = db.ArtigoInPedido.Where(p => p.IdPedido.Equals(pedido)).ToArray();
+            foreach (ArtigoInPedido a in artigos) {
+                double preco = (double)db.Artigo.Where(p => p.Id.Equals(a.IdArtigo)).Select(p => p.Preco).FirstOrDefault();
+                total += a.Quantidade * preco;
+            }
+
+            return 0;
+        }
+
     }
 }
 

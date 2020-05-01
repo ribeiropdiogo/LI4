@@ -1,53 +1,305 @@
 ﻿@{
     ViewData["Title"] = "Home";
-    ViewData["User"] = "Chuck Norris";
+}
+
+
+@section Styles
+{
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/lib/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/lib/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/lib/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/lib/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/lib/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/lib/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 }
 
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Home Page</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li class="breadcrumb-item active">Home Page</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Main content -->
 <section class="content">
-
-    <!-- Default box -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Title</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Home Page</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item active">Home Page</li>
+                    </ol>
+                </div>
             </div>
         </div>
-        <div class="card-body">
-            Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Footer
-        </div>
-        <!-- /.card-footer-->
-    </div>
-    <!-- /.card -->
+    </section>
 
-</section>
-<!-- /.content -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@ViewBag.TotalPedidos</h3>
+
+                            <p>Total Pedidos</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-fork"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <div class="info-box bg-gradient-success">
+                        <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Faturado Hoje</span>
+                            <span class="info-box-number">@ViewBag.TotalHoje €</span>
+
+                            <div class="progress">
+                                <div class="progress-bar" style="width: @ViewBag.ObjetivoHoje%"></div>
+                            </div>
+                            <span class="progress-description">
+                                @ViewBag.ObjetivoHoje% do objetivo
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@ViewBag.PedidosHoje</h3>
+
+                            <p>Pedidos Servidos Hoje</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@ViewBag.ReservasHoje</h3>
+
+                            <p>Reservas para Hoje</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-restaurant"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-8 connectedSortable">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Total Faturado</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">@ViewBag.Total10Dias €</span>
+                                    <span>Total Faturado nos últimos 10 dias</span>
+                                </p>
+                                <!--
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        <span class="text-success">
+                                            <i class="fas fa-arrow-up"></i> 33.1%
+                                        </span>
+                                        <span class="text-muted">Since last month</span>
+                                    </p>
+                                -->
+                            </div>
+                            <!-- /.d-flex -->
+
+                                <div class="position-relative mb-4">
+                                    <canvas id="sales-chart" height="200"></canvas>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+
+                </section>
+                <!-- /.Left col -->
+                <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                <section class="col-lg-4 connectedSortable">
+
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Mercadorias em Falta</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <ol>
+                                @foreach (var mercadoria in ViewBag.MercadoriasEmFalta)
+                                {
+                                <li>@mercadoria</li>
+                                }
+                            </ol>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- Calendar -->
+                    <div class="card bg-gradient-success">
+                        <div class="card-header border-0">
+
+                            <h3 class="card-title">
+                                <i class="far fa-calendar-alt"></i>
+                                Calendar
+                            </h3>
+                            <!-- tools card -->
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <!-- /. tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body pt-0">
+                            <!--The calendar -->
+                            <div id="calendar" style="width: 100%"></div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- right col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+
+            'use strict'
+
+            var ticksStyle = {
+                fontColor: '#495057',
+                fontStyle: 'bold'
+            }
+
+            var mode = 'index'
+            var intersect = true
+
+            // Make the dashboard widgets sortable Using jquery UI
+            $('.connectedSortable').sortable({
+                placeholder: 'sort-highlight',
+                connectWith: '.connectedSortable',
+                handle: '.card-header, .nav-tabs',
+                forcePlaceholderSize: true,
+                zIndex: 999999
+            })
+            $('.connectedSortable .card-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move')
+
+            // bootstrap WYSIHTML5 - text editor
+            $('.textarea').summernote()
+
+
+            // The Calender
+            $('#calendar').datetimepicker({
+                format: 'L',
+                inline: true
+            })
+
+            // Gráfico Vendas
+            var $salesChart = $('#sales-chart')
+            var salesChart = new Chart($salesChart, {
+                data: {
+                    labels: @Html.Raw(ViewBag.Dias),
+                    datasets: [{
+                        type: 'line',
+                        data: @Html.Raw(ViewBag.FaturacaoDiaria),
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        pointBorderColor: '#007bff',
+                        pointBackgroundColor: '#007bff',
+                        fill: false
+                        // pointHoverBackgroundColor: '#007bff',
+                        // pointHoverBorderColor    : '#007bff'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            // display: false,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 1000
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+        })
+
+    </script>
+}
+
