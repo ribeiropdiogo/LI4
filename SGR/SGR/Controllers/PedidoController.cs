@@ -136,6 +136,10 @@ namespace SGR.Controllers
             try
             {
                 Pedido f = db.Pedido.Find(id);
+                List<ArtigoInPedido> l = db.ArtigoInPedido.Where(p => p.IdPedido.Equals(f.Id)).ToList();
+                foreach (ArtigoInPedido a in l)
+                    db.ArtigoInPedido.Remove(a);
+
                 db.Pedido.Remove(f);
                 await db.SaveChangesAsync();
             }
