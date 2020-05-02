@@ -130,20 +130,34 @@
                                     <span class="text-bold text-lg">@ViewBag.Total10Dias €</span>
                                     <span>Total Faturado nos últimos 10 dias</span>
                                 </p>
-                                <!--
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        <span class="text-success">
-                                            <i class="fas fa-arrow-up"></i> 33.1%
-                                        </span>
-                                        <span class="text-muted">Since last month</span>
-                                    </p>
-                                -->
                             </div>
                             <!-- /.d-flex -->
 
-                                <div class="position-relative mb-4">
-                                    <canvas id="sales-chart" height="200"></canvas>
-                                </div>
+                            <div class="position-relative mb-4">
+                                <canvas id="sales-chart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Total Pedidos</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">@ViewBag.Pedidos10Dias</span>
+                                    <span>Total Pedidos nos últimos 10 dias</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="pedidos-chart" height="200"></canvas>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card -->
@@ -167,7 +181,7 @@
                             <ol>
                                 @foreach (var mercadoria in ViewBag.MercadoriasEmFalta)
                                 {
-                                <li>@mercadoria</li>
+                                    <li>@mercadoria</li>
                                 }
                             </ol>
                         </div>
@@ -199,6 +213,37 @@
                             <div id="calendar" style="width: 100%"></div>
                         </div>
                         <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Artigos Mais Vendidos</h3>
+                        </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Artigo</th>
+                                        <th>Preço</th>
+                                        <th>Vendas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var art in ViewBag.MaisVendidos as IEnumerable<KeyValuePair<Artigo, int>>) {
+                                    <tr>
+                                        <td>
+                                            @art.Key.Nome
+                                        </td>
+                                        <td>@art.Key.Preco €</td>
+                                        <td>
+                                            @art.Value
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -286,6 +331,61 @@
                             ticks: $.extend({
                                 beginAtZero: true,
                                 suggestedMax: 1000
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+             // Gráfico Vendas
+            var $pedidosChart = $('#pedidos-chart')
+            var $pedidosChart = new Chart($pedidosChart, {
+                data: {
+                    labels: @Html.Raw(ViewBag.Dias),
+                    datasets: [{
+                        type: 'line',
+                        data: @Html.Raw(ViewBag.PedidosDiarios),
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        pointBorderColor: '#007bff',
+                        pointBackgroundColor: '#007bff',
+                        fill: false
+                        // pointHoverBackgroundColor: '#007bff',
+                        // pointHoverBorderColor    : '#007bff'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            // display: false,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 50
                             }, ticksStyle)
                         }],
                         xAxes: [{

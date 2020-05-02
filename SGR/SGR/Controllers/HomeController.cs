@@ -29,7 +29,10 @@ namespace SGR.Controllers
             ViewBag.TotalHoje = 0;
             ViewBag.ObjetivoHoje = 0;
             ViewBag.Total10Dias = 0;
+            ViewBag.Pedidos10Dias = 0;
             ViewBag.FaturacaoDiaria = faturacaoPassada();
+            ViewBag.PedidosDiarios = pedidosPassados();
+            ViewBag.MaisVendidos = maisVendidos();
 
             ViewBag.Dias = past10Days();
 
@@ -108,7 +111,6 @@ namespace SGR.Controllers
             DateTime[] last10Days = Enumerable.Range(0, 10).Select(i => DateTime.Now.Date.AddDays(-i)).ToArray();
 
 
-
             String s = "[";
             for (int i = 9; i > 0; i--)
             {
@@ -116,6 +118,50 @@ namespace SGR.Controllers
             }
             s = s + "\'" + faturacaoDiaria(last10Days[0]) + "\']";
             return s;
+        }
+
+        private int pedidosDiarios(DateTime data)
+        {
+            int[] idPedidos = db.Pedido.Where(p => p.DataHora.Date.Equals(data.Date)).Select(p => p.Id).ToArray();
+
+            ViewBag.Pedidos10Dias += idPedidos.Length;
+            return idPedidos.Length;
+        }
+
+        private String pedidosPassados()
+        {
+            DateTime[] last10Days = Enumerable.Range(0, 10).Select(i => DateTime.Now.Date.AddDays(-i)).ToArray();
+
+
+            String s = "[";
+            for (int i = 9; i > 0; i--)
+            {
+                s = s + "\'" + pedidosDiarios(last10Days[i]) + "\',";
+            }
+            s = s + "\'" + pedidosDiarios(last10Days[0]) + "\']";
+            return s;
+        }
+
+        private IEnumerable<KeyValuePair<Artigo,int>> maisVendidos()
+        {
+            Dictionary<Artigo, int> vendas = new Dictionary<Artigo, int>();
+
+            List<ArtigoInPedido> artigos = db.ArtigoInPedido.ToList();
+                   
+            foreach (ArtigoInPedido a in artigos){
+                Artigo artigo = db.Artigo.Where(p => p.Id.Equals(a.IdArtigo)).FirstOrDefault();
+                int quant = a.Quantidade;
+
+                if (vendas.Keys.Where(p => p.Id.Equals(artigo.Id)).Count() > 0)
+                    vendas[artigo] += quant;
+                else
+                    vendas.Add(artigo, quant);
+            }
+
+            var sortedVendas = from entry in vendas orderby entry.Value descending select entry;
+            var sortedVendas5 = sortedVendas.Take(5);
+
+            return sortedVendas5;
         }
     }
 }
