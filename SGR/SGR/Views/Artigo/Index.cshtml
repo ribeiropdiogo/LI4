@@ -39,27 +39,30 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
+                        <th>Categoria</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Preco)</td>
-                            <td>
-                                <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
-                                <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
-                                <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a> |
+                            <a asp-action="Eliminar" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
+                        <th>Categoria</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>

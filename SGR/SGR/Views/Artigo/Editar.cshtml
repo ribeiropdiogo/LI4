@@ -28,6 +28,19 @@
     </div>
 </section>
 
+@{
+    List<SelectListItem> newList = new List<SelectListItem>();
+
+    newList.Add(new SelectListItem() { Value = "Bebidas", Text = "Bebidas" });
+    newList.Add(new SelectListItem() { Value = "Entradas", Text = "Entradas" });
+    newList.Add(new SelectListItem() { Value = "Sobremesas", Text = "Sobremesas" });
+    newList.Add(new SelectListItem() { Value = "Pratos Carne", Text = "Pratos Carne" });
+    newList.Add(new SelectListItem() { Value = "Pratos Peixe", Text = "Pratos Peixe" });
+    newList.Add(new SelectListItem() { Value = "Pratos Vegetariano", Text = "Pratos Vegetariano" });
+
+    var selectList = new SelectList(newList, "Value", "Text");
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -52,7 +65,14 @@
                             @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownListFor(model => model.Categoria, selectList, "", new { @class = "custom-select" })
+                            @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
+                        </div>
                         <!-- /.card-body -->
+                        <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+                        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-primary" })
                     </form>
                 </div>
             </div>
@@ -63,18 +83,19 @@
 
 @section Scripts
 {
-        <script src="~/lib/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-        <script>$(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                });
-            });</script>
-    }
+    <script>
+    $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });</script>
+}

@@ -22,6 +22,9 @@ namespace SGR.Models
         [Required(ErrorMessage = "Por favor forneça o Preço")]
         public decimal Preco { get; set; }
 
+        [Required(ErrorMessage = "Por favor forneça a Categoria")]
+        public string Categoria { get; set; }
+
         public virtual ICollection<ArtigoInPedido> ArtigoInPedido { get; set; }
         public virtual ICollection<MercadoriaInArtigo> MercadoriaInArtigo { get; set; }
     }
